@@ -1,6 +1,6 @@
 import classes from '@/app/ui/dashboard/dashboard.module.css'
 import { cards } from '@/app/lib/data'
-import Card from '@/app/ui/dashboard/card/card'
+import Card from '@/app/ui/dashboard/Card/Card'
 import Chart from '@/app/ui/dashboard/Chart/Chart'
 import RightBar from '@/app/ui/dashboard/RightBar/RightBar'
 import Transactions from '@/app/ui/dashboard/Transactions/Transactions'

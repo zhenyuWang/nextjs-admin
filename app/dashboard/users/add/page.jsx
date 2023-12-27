@@ -1,5 +1,4 @@
 import classes from '@/app/ui/dashboard/users/addUser/addUser.module.css'
-import { useRouter } from 'next/navigation'
 
 const AddUserPage = () => {
   return (
@@ -14,12 +13,12 @@ const AddUserPage = () => {
           required
         />
         <input type='phone' placeholder='phone' name='phone' />
-        <select name='isAdmin' id='isAdmin'>
+        <select name='isAdmin' id='isAdmin' defaultValue={true}>
           <option value={false}>Is Admin?</option>
           <option value={true}>Yes</option>
           <option value={false}>No</option>
         </select>
-        <select name='isActive' id='isActive'>
+        <select name='isActive' id='isActive' defaultValue={true}>
           <option value={true}>Is Active?</option>
           <option value={true}>Yes</option>
           <option value={false}>No</option>

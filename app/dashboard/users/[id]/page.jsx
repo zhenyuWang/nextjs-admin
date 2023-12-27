@@ -26,22 +26,14 @@ const UserPage = async ({ params }) => {
           <label>Address</label>
           <textarea type='text' name='address' placeholder='test address' />
           <label>Is Admin?</label>
-          <select name='isAdmin' id='isAdmin'>
-            <option value={true} selected={true}>
-              Yes
-            </option>
-            <option value={false} selected={false}>
-              No
-            </option>
+          <select name='isAdmin' id='isAdmin' defaultValue={true}>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
           </select>
           <label>Is Active?</label>
-          <select name='isActive' id='isActive'>
-            <option value={true} selected={true}>
-              Yes
-            </option>
-            <option value={false} selected={false}>
-              No
-            </option>
+          <select name='isActive' id='isActive' defaultValue={true}>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
           </select>
           <button>Update</button>
         </form>
