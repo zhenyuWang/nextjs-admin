@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@next/eslint-plugin-next": "14.0.1",
+    "mongoose": "^8.0.3",
     "next": "14.0.1",
     "react": "18",
     "react-dom": "18",
     "react-icons": "4.11.0",
     "rechart": "^0.0.1",
-    "recharts": "^2.10.3"
+    "recharts": "^2.10.3",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "8",

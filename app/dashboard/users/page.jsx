@@ -1,10 +1,14 @@
+import { fetchUsers } from '@/app/lib/data'
 import Pagination from '@/app/ui/dashboard/Pagination/Pagination'
 import Search from '@/app/ui/dashboard/Search/Search'
 import classes from '@/app/ui/dashboard/users/users.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const UsersPage = async () => {
+const UsersPage = async ({ searchParams }) => {
+  const q = searchParams?.q || ''
+  const page = searchParams?.page || 1
+  const { count, users } = await fetchUsers(q, page)
   return (
     <div className={classes.container}>
       <div className={classes.top}>
@@ -25,39 +29,41 @@ const UsersPage = async () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div className={classes.user}>
-                <Image
-                  src='/no-avatar.png'
-                  alt=''
-                  width={40}
-                  height={40}
-                  className={classes.userImage}
-                />
-                John
-              </div>
-            </td>
-            <td>123@123.com</td>
-            <td>2023.12.27</td>
-            <td>Admin</td>
-            <td>active</td>
-            <td>
-              <div className={classes.buttons}>
-                <Link href={`/dashboard/users/1`}>
-                  <button className={`${classes.button} ${classes.view}`}>
-                    View
+          {users.map((user) => (
+            <tr>
+              <td>
+                <div className={classes.user}>
+                  <Image
+                    src={user.image || '/no-avatar.png'}
+                    alt=''
+                    width={40}
+                    height={40}
+                    className={classes.userImage}
+                  />
+                  {user.username}
+                </div>
+              </td>
+              <td>{user.email}</td>
+              <td>{user.createdAt?.toString().slice(4, 24)}</td>
+              <td>{user.isAdmin ? 'Admin' : 'Client'}</td>
+              <td>{user.isActive ? 'active' : 'passive'}</td>
+              <td>
+                <div className={classes.buttons}>
+                  <Link href={`/dashboard/users/${user.id}`}>
+                    <button className={`${classes.button} ${classes.view}`}>
+                      View
+                    </button>
+                  </Link>
+                  <button className={`${classes.button} ${classes.delete}`}>
+                    Delete
                   </button>
-                </Link>
-                <button className={`${classes.button} ${classes.delete}`}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <Pagination count={10} />
+      <Pagination count={count} />
     </div>
   )
 }
