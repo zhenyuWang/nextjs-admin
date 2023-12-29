@@ -9,6 +9,7 @@ const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || ''
   const page = searchParams?.page || 1
   const { count, users } = await fetchUsers(q, page)
+
   return (
     <div className={classes.container}>
       <div className={classes.top}>
@@ -30,15 +31,15 @@ const UsersPage = async ({ searchParams }) => {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr>
+            <tr key={user.id}>
               <td>
                 <div className={classes.user}>
                   <Image
-                    src={user.image || '/no-avatar.png'}
+                    src={user.img || '/no-avatar.png'}
                     alt=''
                     width={40}
                     height={40}
-                    className={classes.userImage}
+                    className={classes.avatar}
                   />
                   {user.username}
                 </div>
