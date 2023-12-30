@@ -46,10 +46,6 @@ const productSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    desc: {
-      type: String,
-      required: true,
-    },
     price: {
       type: Number,
       required: true,
@@ -68,6 +64,14 @@ const productSchema = new mongoose.Schema(
     },
     size: {
       type: String,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    desc: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }

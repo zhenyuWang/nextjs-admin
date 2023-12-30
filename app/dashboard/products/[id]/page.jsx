@@ -1,10 +1,12 @@
 import { fetchProduct } from '@/app/lib/data'
+import { updateProduct } from '@/app/lib/actions'
 import classes from '@/app/ui/dashboard/products/product/product.module.css'
 import Image from 'next/image'
 
 const ProductPage = async ({ params }) => {
   const { id } = params
   const product = await fetchProduct(id)
+  console.log('product', product)
 
   return (
     <div className={classes.container}>
@@ -15,7 +17,7 @@ const ProductPage = async ({ params }) => {
         {product.title}
       </div>
       <div className={classes.formContainer}>
-        <form className={classes.form}>
+        <form action={updateProduct} className={classes.form}>
           <input type='hidden' name='id' value={product.id} />
           <label>Title</label>
           <input
@@ -52,15 +54,14 @@ const ProductPage = async ({ params }) => {
             placeholder='please input size'
             defaultValue={product.size}
           />
-          <label>Cat</label>
-          <select name='cat' id='cat' defaultValue={product.cat}>
-            <option value='kitchen'>Phones</option>
-            <option value='computers'>Computers</option>
+          <label>Category</label>
+          <select name='category' defaultValue={product.category}>
+            <option value='phone'>Phone</option>
+            <option value='computer'>Computer</option>
           </select>
           <label>Description</label>
           <textarea
             name='desc'
-            id='desc'
             rows='10'
             placeholder='please input desc'
             defaultValue={product.desc}></textarea>
