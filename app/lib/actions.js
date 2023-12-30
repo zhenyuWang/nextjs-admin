@@ -53,6 +53,39 @@ export const deleteUser = async (formData) => {
   revalidatePath('/dashboard/users')
 }
 
+export const updateUser = async (formData) => {
+  const { id, username, email, password, phone, address, isAdmin, isActive } =
+    Object.fromEntries(formData)
+
+  try {
+    connectToDB()
+
+    const updateFields = {
+      username,
+      email,
+      password,
+      phone,
+      address,
+      isAdmin,
+      isActive,
+    }
+
+    Object.keys(updateFields).forEach(
+      (key) =>
+        (updateFields[key] === '' || undefined) && delete updateFields[key]
+    )
+
+    await User.findByIdAndUpdate(id, updateFields)
+  } catch (err) {
+    console.log(err)
+    throw new Error('Failed to update user!')
+  }
+
+  revalidatePath('/dashboard/users')
+  redirect('/dashboard/users')
+}
+
+
 export const addProduct = async (formData) => {
   const { title, desc, price, stock, color, size } =
     Object.fromEntries(formData)
