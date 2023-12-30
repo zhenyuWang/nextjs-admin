@@ -45,6 +45,17 @@ export const fetchProducts = async (q, page) => {
   }
 }
 
+export const fetchProduct = async (id) => {
+  try {
+    connectToDB()
+    return await Product.findById(id)
+  } catch (err) {
+    console.log(err)
+    throw new Error('Failed to fetch product!')
+  }
+}
+
+// mock data
 export const cards = [
   {
     id: 1,
