@@ -5,6 +5,7 @@ import { User, Product } from './models'
 import { connectToDB } from './utils'
 import { redirect } from 'next/navigation'
 import bcrypt from 'bcrypt'
+import { signIn } from '@/auth'
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
@@ -60,10 +61,13 @@ export const updateUser = async (formData) => {
   try {
     connectToDB()
 
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = password ? await bcrypt.hash(password, salt) : ''
+
     const updateFields = {
       username,
       email,
-      password,
+      password: hashedPassword,
       phone,
       address,
       isAdmin,
@@ -71,8 +75,7 @@ export const updateUser = async (formData) => {
     }
 
     Object.keys(updateFields).forEach(
-      (key) =>
-        (updateFields[key] === '' || undefined) && delete updateFields[key]
+      (key) => !updateFields[key] && delete updateFields[key]
     )
 
     await User.findByIdAndUpdate(id, updateFields)
@@ -84,7 +87,6 @@ export const updateUser = async (formData) => {
   revalidatePath('/dashboard/users')
   redirect('/dashboard/users')
 }
-
 
 export const addProduct = async (formData) => {
   const { title, price, stock, color, size, category, desc } =
@@ -160,4 +162,16 @@ export const updateProduct = async (formData) => {
 
   revalidatePath('/dashboard/products')
   redirect('/dashboard/products')
+}
+
+export const authenticate = async (prevState, formData) => {
+  const { username, password } = Object.fromEntries(formData)
+  try {
+    await signIn('credentials', { username, password })
+  } catch (err) {
+    if (err.message.includes('CredentialsSignin')) {
+      return 'Wrong Credentials!'
+    }
+    throw err
+  }
 }
