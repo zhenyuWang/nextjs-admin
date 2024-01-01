@@ -1,22 +1,22 @@
 'use client'
 
 import { MdSearch } from 'react-icons/md'
-import classes from './search.module.css'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
+import { Input } from '@nextui-org/react'
 
 const Search = ({ placeholder }) => {
   const searchParams = useSearchParams()
   const { replace } = useRouter()
   const pathname = usePathname()
 
-  const handleSearch = useDebouncedCallback((e) => {
+  const handleSearch = useDebouncedCallback((value) => {
     const params = new URLSearchParams(searchParams)
 
     params.set('page', 1)
 
-    if (e.target.value) {
-      e.target.value.length > 2 && params.set('q', e.target.value)
+    if (value) {
+      value.length > 2 && params.set('q', value)
     } else {
       params.delete('q')
     }
@@ -24,15 +24,14 @@ const Search = ({ placeholder }) => {
   }, 300)
 
   return (
-    <div className={classes.container}>
-      <MdSearch />
-      <input
-        type='text'
-        placeholder={placeholder}
-        className={classes.input}
-        onChange={handleSearch}
-      />
-    </div>
+    <Input
+      className='w-50'
+      size='small'
+      variant='bordered'
+      placeholder={placeholder}
+      startContent={<MdSearch />}
+      onValueChange={handleSearch}
+    />
   )
 }
 
