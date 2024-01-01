@@ -5,7 +5,7 @@ import { User, Product } from './models'
 import { connectToDB } from './utils'
 import { redirect } from 'next/navigation'
 import bcrypt from 'bcrypt'
-import { signIn } from '@/auth'
+import { auth, signIn, signOut } from '@/auth'
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
@@ -174,4 +174,12 @@ export const authenticate = async (prevState, formData) => {
     }
     throw err
   }
+}
+
+export const getCurrentUser = async () => {
+  return await auth()
+}
+
+export async function triggerSignOut() {
+  await signOut()
 }

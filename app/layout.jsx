@@ -1,18 +1,24 @@
+'use client'
+
 import { Inter } from 'next/font/google'
 import './ui/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+import { NextUIProvider } from '@nextui-org/react'
 
-export const metadata = {
-  title: 'Zhenyu Wang Next.js Admin Dashboard',
-  description: 'An admin dashboard built with Next.js',
-}
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
+      <title>Next.js Admin Dashboard</title>
+      <meta
+        name='description'
+        content='An admin dashboard built with Next.js'
+      />
       <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NextUIProvider>{children}</NextUIProvider>
+      </body>
     </html>
   )
 }

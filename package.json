@@ -12,16 +12,21 @@
     "@next/eslint-plugin-next": "14.0.1",
     "bcrypt": "^5.1.1",
     "mongoose": "^8.0.3",
-    "next": "14.0.1",
+    "next": "14.0.3",
     "next-auth": "5.0.0-beta.3",
     "react": "18",
     "react-dom": "18",
     "react-icons": "4.11.0",
     "recharts": "^2.10.3",
-    "use-debounce": "^10.0.0"
+    "use-debounce": "^10.0.0",
+    "@nextui-org/react": "^2.2.9",
+    "framer-motion": "^10.16.5"
   },
   "devDependencies": {
     "eslint": "8",
-    "eslint-config-next": "14.0.1"
+    "eslint-config-next": "14.0.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
   }
 }

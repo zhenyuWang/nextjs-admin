@@ -1,3 +1,5 @@
+import { getCurrentUser, triggerSignOut } from '@/app/lib/actions'
+
 import Image from 'next/image'
 import MenuLink from './MenuLink/MenuLink'
 import classes from './sidebar.module.css'
@@ -13,7 +15,6 @@ import {
   MdHelpCenter,
   MdLogout,
 } from 'react-icons/md'
-import { auth, signOut } from '@/auth'
 
 const menuItems = [
   {
@@ -79,13 +80,13 @@ const menuItems = [
 ]
 
 const Sidebar = async () => {
-  const { username, img } = await auth()
+  const user = await getCurrentUser()
 
   return (
     <div className={classes.container}>
       <div className={classes.user}>
         <Image
-          src={img || '/no-avatar.png'}
+          src={user?.img || '/images/avatar.png'}
           className={classes.userImage}
           width={50}
           height={50}
@@ -93,7 +94,7 @@ const Sidebar = async () => {
           alt='avatar'
         />
         <div className={classes.userDetail}>
-          <span className={classes.username}>{username}</span>
+          <span className={classes.username}>{user?.username || 'admin'}</span>
           <span className={classes.userTitle}>Administrator</span>
         </div>
       </div>
@@ -107,11 +108,7 @@ const Sidebar = async () => {
           </li>
         ))}
       </ul>
-      <form
-        action={async () => {
-          'use server'
-          await signOut()
-        }}>
+      <form action={triggerSignOut}>
         <button className={classes.logout}>
           <MdLogout />
           Logout
