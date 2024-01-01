@@ -1,22 +1,40 @@
+'use client'
+
+import {
+  Card as CardComp,
+  CardHeader,
+  CardBody,
+  CardFooter,
+} from '@nextui-org/react'
 import { MdSupervisedUserCircle } from 'react-icons/md'
-import classes from './card.module.css'
+import AnimatedNumbers from 'react-animated-numbers'
 
 const Card = ({ item }) => {
   return (
-    <div className={classes.container}>
-      <MdSupervisedUserCircle size={24} />
-      <div className={classes.texts}>
-        <span className={classes.title}>{item.title}</span>
-        <span className={classes.number}>{item.number}</span>
-        <span className={classes.detail}>
-          <span
-            className={item.change > 0 ? classes.positive : classes.negative}>
+    <CardComp className='flex-1 bg-slate-800 text-white'>
+      <CardHeader>
+        <MdSupervisedUserCircle size={24} />
+        <span className='ml-2'>{item.title}</span>
+      </CardHeader>
+      <CardBody>
+        <AnimatedNumbers
+          animateToNumber={item.number}
+          fontStyle={{
+            color: 'white',
+            fontSize: 24,
+          }}
+        />
+      </CardBody>
+      <CardFooter>
+        <span className='text-sm'>
+          <span className={item.change > 0 ? 'text-green-500' : 'text-red-500'}>
             {item.change}%
-          </span>{' '}
+          </span>
+          &nbsp;
           {item.change > 0 ? 'more' : 'less'} than previous week
         </span>
-      </div>
-    </div>
+      </CardFooter>
+    </CardComp>
   )
 }
 
