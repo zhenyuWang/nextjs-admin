@@ -7,9 +7,13 @@ import {
   CardFooter,
 } from '@nextui-org/react'
 import { MdSupervisedUserCircle } from 'react-icons/md'
-import AnimatedNumbers from 'react-animated-numbers'
+import dynamic from 'next/dynamic'
 
 const Card = ({ item }) => {
+  const AnimatedNumbers = dynamic(() => import('react-animated-numbers'), {
+    ssr: false,
+  })
+
   return (
     <CardComp className='flex-1 bg-slate-800 text-white'>
       <CardHeader>
