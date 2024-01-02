@@ -1,4 +1,4 @@
-import { User, Product } from './models'
+import { User, Product, Transaction } from './models'
 import { connectToDB } from './utils'
 
 export const fetchUsers = async (q, page) => {
@@ -76,3 +76,13 @@ export const cards = [
     change: 18,
   },
 ]
+
+export const fetchLatestTransactions = async () => {
+  try {
+    connectToDB()
+    return await Transaction.find().limit(5)
+  } catch (err) {
+    console.log(err)
+    throw new Error('Failed to fetch latest transactions!')
+  }
+}

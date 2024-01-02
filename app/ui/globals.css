@@ -23,3 +23,16 @@ body {
 a {
   text-decoration: none;
 }
+
+th {
+  background-color: #384e7c !important;
+  color: white !important;
+}
+
+tr[data-odd='true'] > td::before {
+  background-color: #253352 !important;
+}
+tr:hover > td:before {
+  opacity: 1;
+  background-color: #384e7c !important;
+}

@@ -1,104 +1,75 @@
-import Image from 'next/image'
-import classes from './transactions.module.css'
+'use client'
 
-const Transactions = () => {
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Spinner,
+  Image,
+  Chip,
+} from '@nextui-org/react'
+
+const Transactions = ({ list }) => {
+  const getChipColor = (status) => {
+    switch (status) {
+      case 'pending':
+        return 'primary'
+      case 'done':
+        return 'success'
+      case 'canceled':
+        return 'default'
+      default:
+        return 'primary'
+    }
+  }
+
   return (
-    <div className={classes.container}>
-      <h2 className={classes.title}>Latest Transactions</h2>
-      <table className={classes.table}>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Status</td>
-            <td>Date</td>
-            <td>Amount</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div className={classes.user}>
+    <div>
+      <h2 className='mb-6 text-slate-500 '>Latest Transactions</h2>
+      <Table
+        removeWrapper
+        color='primary'
+        isStriped
+        aria-label='transaction table'>
+        <TableHeader className='bg-slate-800 font-bold'>
+          <TableColumn>Name</TableColumn>
+          <TableColumn>Status</TableColumn>
+          <TableColumn>Date</TableColumn>
+          <TableColumn>Amount</TableColumn>
+        </TableHeader>
+        <TableBody
+          items={list}
+          emptyContent={
+            list?.length ? (
+              <Spinner label='Loading...' labelColor='primary' />
+            ) : (
+              'No rows to display.'
+            )
+          }>
+          {(item) => (
+            <TableRow key={item._id}>
+              <TableCell className='flex items-center'>
                 <Image
-                  src='/no-avatar.png'
-                  alt=''
                   width={40}
-                  height={40}
-                  className={classes.userImage}
-                />
-                John Doe
-              </div>
-            </td>
-            <td>
-              <span className={`${classes.status} ${classes.pending}`}>
-                Pending
-              </span>
-            </td>
-            <td>14.02.2024</td>
-            <td>$3.200</td>
-          </tr>
-          <tr>
-            <td>
-              <div className={classes.user}>
-                <Image
                   src='/no-avatar.png'
-                  alt=''
-                  width={40}
-                  height={40}
-                  className={classes.userImage}
+                  className='rounded-[50%]'
                 />
-                John Doe
-              </div>
-            </td>
-            <td>
-              <span className={`${classes.status} ${classes.done}`}>Done</span>
-            </td>
-            <td>14.02.2024</td>
-            <td>$3.200</td>
-          </tr>
-          <tr>
-            <td>
-              <div className={classes.user}>
-                <Image
-                  src='/no-avatar.png'
-                  alt=''
-                  width={40}
-                  height={40}
-                  className={classes.userImage}
-                />
-                John Doe
-              </div>
-            </td>
-            <td>
-              <span className={`${classes.status} ${classes.cancelled}`}>
-                Cancelled
-              </span>
-            </td>
-            <td>14.02.2024</td>
-            <td>$3.200</td>
-          </tr>
-          <tr>
-            <td>
-              <div className={classes.user}>
-                <Image
-                  src='/no-avatar.png'
-                  alt=''
-                  width={40}
-                  height={40}
-                  className={classes.userImage}
-                />
-                John Doe
-              </div>
-            </td>
-            <td>
-              <span className={`${classes.status} ${classes.pending}`}>
-                Pending
-              </span>
-            </td>
-            <td>14.02.2024</td>
-            <td>$3.200</td>
-          </tr>
-        </tbody>
-      </table>
+                <span className='ml-2 z-10'>{item.username}</span>
+              </TableCell>
+              <TableCell>
+                <Chip color={getChipColor(item.status)}>{item.status}</Chip>
+              </TableCell>
+              <TableCell>{item.createdAt}</TableCell>
+              <TableCell>
+                <span>${item.amount}</span>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   )
 }

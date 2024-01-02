@@ -2,8 +2,6 @@ import SideBar from '@/app/ui/dashboard/SideBar/SideBar'
 import Navbar from '@/app/ui/dashboard/Navbar/Navbar'
 import classes from '@/app/ui/dashboard/dashboard.module.css'
 
-import { Button } from '@nextui-org/react'
-
 const Layout = ({ children }) => {
   return (
     <div className={classes.container}>
