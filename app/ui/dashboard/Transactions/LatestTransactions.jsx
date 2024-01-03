@@ -10,7 +10,12 @@ const LatestTransactions = async () => {
     return _item
   })
 
-  return <Transactions list={list} />
+  return (
+    <div>
+      <h2 className='mb-6 text-slate-500'>Latest Transactions</h2>
+      <Transactions list={list} />
+    </div>
+  )
 }
 
 export default LatestTransactions

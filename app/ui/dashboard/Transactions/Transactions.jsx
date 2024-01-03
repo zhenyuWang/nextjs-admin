@@ -27,50 +27,47 @@ const Transactions = ({ list }) => {
   }
 
   return (
-    <div>
-      <h2 className='mb-6 text-slate-500 '>Latest Transactions</h2>
-      <Table
-        removeWrapper
-        color='primary'
-        isStriped
-        aria-label='transaction table'>
-        <TableHeader className='bg-slate-800 font-bold'>
-          <TableColumn>Name</TableColumn>
-          <TableColumn>Status</TableColumn>
-          <TableColumn>Date</TableColumn>
-          <TableColumn>Amount</TableColumn>
-        </TableHeader>
-        <TableBody
-          items={list}
-          emptyContent={
-            list?.length ? (
-              <Spinner label='Loading...' labelColor='primary' />
-            ) : (
-              'No rows to display.'
-            )
-          }>
-          {(item) => (
-            <TableRow key={item._id}>
-              <TableCell className='flex items-center'>
-                <Image
-                  width={40}
-                  src='/no-avatar.png'
-                  className='rounded-[50%]'
-                />
-                <span className='ml-2 z-10'>{item.username}</span>
-              </TableCell>
-              <TableCell>
-                <Chip color={getChipColor(item.status)}>{item.status}</Chip>
-              </TableCell>
-              <TableCell>{item.createdAt}</TableCell>
-              <TableCell>
-                <span>${item.amount}</span>
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </div>
+    <Table
+      removeWrapper
+      color='primary'
+      isStriped
+      aria-label='transaction table'>
+      <TableHeader className='bg-slate-800 font-bold'>
+        <TableColumn>Name</TableColumn>
+        <TableColumn>Status</TableColumn>
+        <TableColumn>Date</TableColumn>
+        <TableColumn>Amount</TableColumn>
+      </TableHeader>
+      <TableBody
+        items={list}
+        emptyContent={
+          list?.length ? (
+            <Spinner label='Loading...' labelColor='primary' />
+          ) : (
+            'No rows to display.'
+          )
+        }>
+        {(item) => (
+          <TableRow key={item._id}>
+            <TableCell className='flex items-center'>
+              <Image
+                width={40}
+                src='/no-avatar.png'
+                className='rounded-[50%]'
+              />
+              <span className='ml-2 z-10'>{item.username}</span>
+            </TableCell>
+            <TableCell>
+              <Chip color={getChipColor(item.status)}>{item.status}</Chip>
+            </TableCell>
+            <TableCell>{item.createdAt}</TableCell>
+            <TableCell>
+              <span>${item.amount}</span>
+            </TableCell>
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
   )
 }
 
