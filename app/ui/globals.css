@@ -14,6 +14,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #3477f2;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #ffffff;
+}
 
 body {
   background-color: var(--bg);

@@ -1,4 +1,3 @@
-import classes from '@/app/ui/dashboard/dashboard.module.css'
 import { cards } from '@/app/lib/data'
 import Card from '@/app/ui/dashboard/Card/Card'
 import Chart from '@/app/ui/dashboard/Chart/Chart'
@@ -7,9 +6,9 @@ import LatestTransactions from '@/app/ui/dashboard/Transactions/LatestTransactio
 
 const Dashboard = () => {
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.main}>
-        <div className={classes.cards}>
+    <div className='flex mt-5 relative gap-5'>
+      <div className='min-w-[600px] flex basis-3/4 flex-col gap-5'>
+        <div className='flex gap-5 justify-between'>
           {cards.map((item) => (
             <Card item={item} key={item.id} />
           ))}
@@ -17,7 +16,7 @@ const Dashboard = () => {
         <LatestTransactions />
         <Chart />
       </div>
-      <div className={classes.side}>
+      <div className='w-[calc(25%-20px)] min-w-[230px] xl:fixed xl:w-[calc((100%-300px)/4-20px)] xl:right-5'>
         <RightBar />
       </div>
     </div>

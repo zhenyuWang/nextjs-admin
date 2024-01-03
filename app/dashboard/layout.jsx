@@ -1,15 +1,16 @@
 import SideBar from '@/app/ui/dashboard/SideBar/SideBar'
 import Navbar from '@/app/ui/dashboard/Navbar/Navbar'
-import classes from '@/app/ui/dashboard/dashboard.module.css'
 
 const Layout = ({ children }) => {
   return (
-    <div className={classes.container}>
-      <div className={classes.menu}>
+    <div className='h-screen flex'>
+      <div className='min-w-[260px] p-5 bg-[var(--bgSoft)] overflow-y-auto'>
         <SideBar />
       </div>
-      <div className={classes.content}>
-        <Navbar />
+      <div className='flex-1 px-5 pb-5 pt-[80px] relative overflow-auto w-[calc(100vh-260px]'>
+        <div className='fixed top-0 w-[calc(100%-280px)] right-0 z-50'>
+          <Navbar />
+        </div>
         {children}
       </div>
     </div>
