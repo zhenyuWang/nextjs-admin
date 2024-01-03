@@ -6,7 +6,6 @@ import Image from 'next/image'
 const ProductPage = async ({ params }) => {
   const { id } = params
   const product = await fetchProduct(id)
-  console.log('product', product)
 
   return (
     <div className={classes.container}>

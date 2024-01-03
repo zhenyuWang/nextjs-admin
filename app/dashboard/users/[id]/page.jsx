@@ -7,7 +7,6 @@ import Image from 'next/image'
 const UserPage = async ({ params }) => {
   const { id } = params
   const user = await fetchUser(id)
-  console.log('user', user)
 
   return (
     <div className={classes.container}>
