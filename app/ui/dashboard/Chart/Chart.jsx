@@ -1,6 +1,5 @@
 'use client'
 
-import classes from './chart.module.css'
 import {
   LineChart,
   Line,
@@ -51,8 +50,8 @@ const data = [
 
 const Chart = () => {
   return (
-    <div className={classes.container}>
-      <h2 className={classes.title}>Weekly Recap</h2>
+    <div className='h-[450px] p-5 rounded-lg bg-[var(--bgSoft)]'>
+      <h2 className='mb-6 text-slate-500'>Weekly Recap</h2>
       <ResponsiveContainer width='100%' height='90%'>
         <LineChart
           width={500}
