@@ -27,17 +27,17 @@ dependencies:
     specifier: 5.0.0-beta.3
     version: 5.0.0-beta.3(next@14.0.3)(react@18.0.0)
   react:
-    specifier: '18'
+    specifier: ^18
     version: 18.0.0
   react-animated-numbers:
     specifier: ^0.17.1
     version: 0.17.1(react-dom@18.0.0)(react@18.0.0)
   react-dom:
-    specifier: '18'
+    specifier: ^18
     version: 18.0.0(react@18.0.0)
   react-icons:
-    specifier: 4.11.0
-    version: 4.11.0(react@18.0.0)
+    specifier: ^4.12.0
+    version: 4.12.0(react@18.0.0)
   recharts:
     specifier: ^2.10.3
     version: 2.10.3(prop-types@15.8.1)(react-dom@18.0.0)(react@18.0.0)
@@ -47,14 +47,14 @@ dependencies:
 
 devDependencies:
   autoprefixer:
-    specifier: ^10.4.16
+    specifier: ^10.0.1
     version: 10.4.16(postcss@8.4.31)
   eslint:
     specifier: '8'
     version: 8.0.0
   eslint-config-next:
-    specifier: 14.0.1
-    version: 14.0.1(eslint@8.0.0)(typescript@5.3.3)
+    specifier: 14.0.3
+    version: 14.0.3(eslint@8.0.0)(typescript@5.3.3)
   postcss:
     specifier: ^8
     version: 8.4.31
@@ -263,6 +263,13 @@ packages:
     resolution: {integrity: sha512-bLjJMwXdzvhnQOnxvHoTTUh/+PYk6FF/DCgHi4BXwXCINer+o1ZYfL9aVeezj/oI7wqGJOqwGIXrlBvPbAId3w==}
     dependencies:
       glob: 7.1.7
+    dev: false
+
+  /@next/eslint-plugin-next@14.0.3:
+    resolution: {integrity: sha512-j4K0n+DcmQYCVnSAM+UByTVfIHnYQy2ODozfQP+4RdwtRDfobrIvKq1K4Exb2koJ79HSSa7s6B2SA8T/1YR3RA==}
+    dependencies:
+      glob: 7.1.7
+    dev: true
 
   /@next/swc-darwin-arm64@14.0.3:
     resolution: {integrity: sha512-64JbSvi3nbbcEtyitNn2LEDS/hcleAFpHdykpcnrstITFlzFgB/bW0ER5/SJJwUPj+ZPY+z3e+1jAfcczRLVGw==}
@@ -3461,8 +3468,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-next@14.0.1(eslint@8.0.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-QfIFK2WD39H4WOespjgf6PLv9Bpsd7KGGelCtmq4l67nGvnlsGpuvj0hIT+aIy6p5gKH+lAChYILsyDlxP52yg==}
+  /eslint-config-next@14.0.3(eslint@8.0.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-IKPhpLdpSUyKofmsXUfrvBC49JMUTdeaD8ZIH4v9Vk0sC1X6URTuTJCLtA0Vwuj7V/CQh0oISuSTvNn5//Buew==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -3470,7 +3477,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@next/eslint-plugin-next': 14.0.1
+      '@next/eslint-plugin-next': 14.0.3
       '@rushstack/eslint-patch': 1.6.1
       '@typescript-eslint/parser': 6.15.0(eslint@8.0.0)(typescript@5.3.3)
       eslint: 8.0.0
@@ -4966,8 +4973,8 @@ packages:
       scheduler: 0.21.0
     dev: false
 
-  /react-icons@4.11.0(react@18.0.0):
-    resolution: {integrity: sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==}
+  /react-icons@4.12.0(react@18.0.0):
+    resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
     peerDependencies:
       react: '*'
     dependencies:
