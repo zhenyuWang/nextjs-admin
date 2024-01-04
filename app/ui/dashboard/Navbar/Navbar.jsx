@@ -1,6 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import Search from '@/app/ui/dashboard/Search/Search'
+import User from './User'
 import { MdNotifications, MdOutlineChat, MdPublic } from 'react-icons/md'
 import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react'
 
@@ -24,13 +25,12 @@ const Navbar = () => {
           </BreadcrumbItem>
         ))}
       </Breadcrumbs>
-      <div className='flex items-center'>
+      <div className='flex items-center gap-4'>
         <Search placeholder='Search...' />
-        <div className='ml-4 flex gap-5'>
-          <MdOutlineChat size={20} />
-          <MdNotifications size={20} />
-          <MdPublic size={20} />
-        </div>
+        <MdOutlineChat size={20} />
+        <MdNotifications size={20} />
+        <MdPublic size={20} />
+        <User />
       </div>
     </div>
   )

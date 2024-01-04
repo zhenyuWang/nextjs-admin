@@ -4,7 +4,7 @@ import Navbar from '@/app/ui/dashboard/Navbar/Navbar'
 const Layout = ({ children }) => {
   return (
     <div className='h-screen flex'>
-      <div className='min-w-[260px] p-5 bg-[var(--bgSoft)] overflow-y-auto'>
+      <div className='min-w-[260px] bg-[var(--bgSoft)] overflow-y-auto'>
         <SideBar />
       </div>
       <div className='flex-1 px-5 pb-5 pt-[80px] relative overflow-auto w-[calc(100vh-260px]'>
