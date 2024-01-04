@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import classes from './menuLink.module.css'
 import { usePathname } from 'next/navigation'
 
 const MenuLink = ({ item }) => {
@@ -10,11 +9,11 @@ const MenuLink = ({ item }) => {
   return (
     <Link
       href={item.path}
-      className={`${classes.container} ${
-        pathname === item.path && classes.active
+      className={`flex items-center p-4 hover:text-blue-500 hover:bg-gray-700 ${
+        pathname === item.path ? 'text-blue-500' : 'text-white'
       }`}>
       {item.icon}
-      {item.title}
+      <span className='ml-2'>{item.title}</span>
     </Link>
   )
 }

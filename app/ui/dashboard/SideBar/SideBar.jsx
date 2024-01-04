@@ -1,9 +1,13 @@
-import { getCurrentUser, triggerSignOut } from '@/app/lib/actions'
+'use client'
 
-import Image from 'next/image'
-import MenuLink from './MenuLink/MenuLink'
-import classes from './sidebar.module.css'
+import Head from './Head'
+import MenuLink from './MenuLink'
+import { Accordion, AccordionItem } from '@nextui-org/react'
 import {
+  MdOutlineKeyboardArrowRight,
+  MdPages,
+  MdOutlineAnalytics,
+  MdPerson,
   MdDashboard,
   MdSupervisedUserCircle,
   MdShoppingBag,
@@ -13,11 +17,11 @@ import {
   MdPeople,
   MdOutlineSettings,
   MdHelpCenter,
-  MdLogout,
 } from 'react-icons/md'
 
 const menuItems = [
   {
+    icon: <MdPages />,
     title: 'Pages',
     list: [
       {
@@ -43,6 +47,7 @@ const menuItems = [
     ],
   },
   {
+    icon: <MdOutlineAnalytics />,
     title: 'Analytics',
     list: [
       {
@@ -63,6 +68,7 @@ const menuItems = [
     ],
   },
   {
+    icon: <MdPerson />,
     title: 'User',
     list: [
       {
@@ -79,41 +85,25 @@ const menuItems = [
   },
 ]
 
-const Sidebar = async () => {
-  const user = await getCurrentUser()
-
+const Sidebar = () => {
   return (
-    <div className={classes.container}>
-      <div className={classes.user}>
-        <Image
-          src={user?.img || '/images/avatar.png'}
-          className={classes.userImage}
-          width={50}
-          height={50}
-          priority={true}
-          alt='avatar'
-        />
-        <div className={classes.userDetail}>
-          <span className={classes.username}>{user?.username || 'admin'}</span>
-          <span className={classes.userTitle}>Administrator</span>
-        </div>
-      </div>
-      <ul className={classes.list}>
-        {menuItems.map((cat) => (
-          <li key={cat.title}>
-            <span className={classes.cat}>{cat.title}</span>
-            {cat.list.map((item) => (
-              <MenuLink item={item} key={item.title} />
+    <div>
+      <Head />
+      <Accordion
+        className='p-0'
+        itemClasses={{ title: 'text-white', heading: ' px-3' }}>
+        {menuItems.map((item) => (
+          <AccordionItem
+            key={item.title}
+            startContent={item.icon}
+            indicator={<MdOutlineKeyboardArrowRight />}
+            title={item.title}>
+            {item.list.map((link) => (
+              <MenuLink item={link} key={link.title} />
             ))}
-          </li>
+          </AccordionItem>
         ))}
-      </ul>
-      <form action={triggerSignOut}>
-        <button className={classes.logout}>
-          <MdLogout />
-          Logout
-        </button>
-      </form>
+      </Accordion>
     </div>
   )
 }
