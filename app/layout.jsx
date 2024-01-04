@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { Inter } from 'next/font/google'
 import './ui/globals.css'
 
@@ -8,6 +10,11 @@ import { NextUIProvider } from '@nextui-org/react'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    window?.localStorage.setItem('theme', 'dark')
+    document?.documentElement.classList.add('dark')
+  }, [])
+
   return (
     <html lang='en'>
       <title>Next.js Admin Dashboard</title>
