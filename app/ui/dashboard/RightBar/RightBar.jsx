@@ -14,7 +14,7 @@ const RightBar = () => {
             and JavaScript, and expertise in frameworks like Vue and React.
           </p>
           <Link target='_blank' href='https://3d-personal-profile.vercel.app/'>
-            <Button color='primary' endContent={<MdArrowForward />}>
+            <Button color='primary' size='sm' endContent={<MdArrowForward />}>
               More
             </Button>
           </Link>
@@ -33,7 +33,7 @@ const RightBar = () => {
           <Link
             target='_blank'
             href='https://3d-personal-profile.vercel.app/#contact'>
-            <Button color='primary' endContent={<MdArrowForward />}>
+            <Button color='primary' size='sm' endContent={<MdArrowForward />}>
               Contact Me
             </Button>
           </Link>
