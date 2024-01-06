@@ -52,9 +52,9 @@ export const deleteUser = async (id) => {
   revalidatePath('/dashboard/users')
 }
 
-export const updateUser = async (formData) => {
+export const updateUser = async (userInfo) => {
   const { id, username, email, password, phone, address, isAdmin, isActive } =
-    Object.fromEntries(formData)
+    userInfo
 
   try {
     connectToDB()
@@ -72,9 +72,9 @@ export const updateUser = async (formData) => {
       isActive,
     }
 
-    Object.keys(updateFields).forEach(
-      (key) => !updateFields[key] && delete updateFields[key]
-    )
+    if (!password) {
+      delete updateFields.password
+    }
 
     await User.findByIdAndUpdate(id, updateFields)
   } catch (err) {
