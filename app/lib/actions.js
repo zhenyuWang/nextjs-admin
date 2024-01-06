@@ -38,9 +38,7 @@ export const addUser = async (formData) => {
   redirect('/dashboard/users')
 }
 
-export const deleteUser = async (formData) => {
-  const { id } = Object.fromEntries(formData)
-
+export const deleteUser = async (id) => {
   try {
     connectToDB()
 

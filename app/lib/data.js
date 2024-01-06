@@ -1,17 +1,16 @@
 import { User, Product, Transaction } from './models'
 import { connectToDB } from './utils'
 
-export const fetchUsers = async (q, page) => {
+export const fetchUsers = async (q, pageNum, pageSize) => {
   const regex = new RegExp(q, 'i')
-  const ITEM_PER_PAGE = 2
 
   try {
     connectToDB()
-    const count = await User.find({ username: { $regex: regex } }).count()
+    const total = await User.find({ username: { $regex: regex } }).count()
     const users = await User.find({ username: { $regex: regex } })
-      .limit(ITEM_PER_PAGE)
-      .skip(ITEM_PER_PAGE * (page - 1))
-    return { count, users }
+      .limit(pageSize)
+      .skip(pageSize * (pageNum - 1))
+    return { total, users }
   } catch (err) {
     console.log(err)
     throw new Error('Failed to fetch users!')

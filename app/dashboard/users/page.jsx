@@ -1,75 +1,29 @@
 import { fetchUsers } from '@/app/lib/data'
 import { deleteUser } from '@/app/lib/actions'
-import Pagination from '@/app/ui/dashboard/Pagination/Pagination'
-import Search from '@/app/ui/dashboard/Search/Search'
-import classes from '@/app/ui/dashboard/users/users.module.css'
-import Image from 'next/image'
-import Link from 'next/link'
+import UserList from '@/app/ui/dashboard/users/user/List'
 
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || ''
-  const page = searchParams?.page || 1
-  const { count, users } = await fetchUsers(q, page)
+  const pageNum = searchParams?.page * 1 || 1
+  const pageSize = 10
+
+  const { total, users } = await fetchUsers(q, pageNum, pageSize)
+
+  const simpleUsers = users.map((item) => {
+    const _item = item._doc
+    _item._id = _item._id.toString()
+    _item.createdAt = _item.createdAt.toString().slice(4, 24)
+    return _item
+  })
 
   return (
-    <div className={classes.container}>
-      <div className={classes.top}>
-        <Search placeholder='Search for a user...' />
-        <Link href='/dashboard/users/add'>
-          <button className={classes.addButton}>Add New</button>
-        </Link>
-      </div>
-      <table className={classes.table}>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Created At</td>
-            <td>Role</td>
-            <td>Status</td>
-            <td>Action</td>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>
-                <div className={classes.user}>
-                  <Image
-                    src={user.img || '/no-avatar.png'}
-                    alt=''
-                    width={40}
-                    height={40}
-                    className={classes.avatar}
-                  />
-                  {user.username}
-                </div>
-              </td>
-              <td>{user.email}</td>
-              <td>{user.createdAt?.toString().slice(4, 24)}</td>
-              <td>{user.isAdmin ? 'Admin' : 'Client'}</td>
-              <td>{user.isActive ? 'active' : 'passive'}</td>
-              <td>
-                <div className={classes.buttons}>
-                  <Link href={`/dashboard/users/${user.id}`}>
-                    <button className={`${classes.button} ${classes.view}`}>
-                      View
-                    </button>
-                  </Link>
-                  <form action={deleteUser}>
-                    <input type='hidden' name='id' value={user.id} />
-                    <button className={`${classes.button} ${classes.delete}`}>
-                      Delete
-                    </button>
-                  </form>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <Pagination count={count} />
-    </div>
+    <UserList
+      users={simpleUsers}
+      total={total}
+      pageNum={pageNum}
+      pageSize={pageSize}
+      deleteUser={deleteUser}
+    />
   )
 }
 
