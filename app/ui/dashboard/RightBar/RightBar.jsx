@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { Button } from '@nextui-org/react'
+import { Link, Button } from '@nextui-org/react'
 import { MdArrowForward } from 'react-icons/md'
 
 const RightBar = () => {
@@ -13,11 +12,16 @@ const RightBar = () => {
             I&apos;m a skilled software developer with experience in TypeScript
             and JavaScript, and expertise in frameworks like Vue and React.
           </p>
-          <Link target='_blank' href='https://3d-personal-profile.vercel.app/'>
-            <Button color='primary' size='sm' endContent={<MdArrowForward />}>
-              More
-            </Button>
-          </Link>
+          <Button
+            as={Link}
+            className='w-[fit-content]'
+            target='_blank'
+            href='https://3d-personal-profile.vercel.app/'
+            size='sm'
+            endContent={<MdArrowForward />}
+            color='primary'>
+            More
+          </Button>
         </div>
       </div>
       <div className='mb-5 py-5 px-6 rounded-lg bg-gradient-to-t from-[var(--bgSoft)] to-[#253352]'>
@@ -30,13 +34,16 @@ const RightBar = () => {
             real-world problems. Let&apos;s work together to bring your ideas to
             life!
           </p>
-          <Link
+          <Button
+            as={Link}
+            className='w-[fit-content]'
             target='_blank'
-            href='https://3d-personal-profile.vercel.app/#contact'>
-            <Button color='primary' size='sm' endContent={<MdArrowForward />}>
-              Contact Me
-            </Button>
-          </Link>
+            href='https://3d-personal-profile.vercel.app/#contact'
+            size='sm'
+            endContent={<MdArrowForward />}
+            color='primary'>
+            Contact Me
+          </Button>
         </div>
       </div>
     </div>
