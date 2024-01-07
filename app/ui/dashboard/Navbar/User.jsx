@@ -34,6 +34,12 @@ const NavbarUser = () => {
           <DropdownItem key='email' isDisabled>
             {user.email}
           </DropdownItem>
+          <DropdownItem
+            key='github'
+            target='_blank'
+            href='https://github.com/zhenyuWang/nextjs-admin'>
+            GitHub
+          </DropdownItem>
         </DropdownSection>
         <DropdownItem
           startContent={<MdLogout />}
