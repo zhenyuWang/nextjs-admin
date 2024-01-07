@@ -1,13 +1,32 @@
 'use client'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 import Search from '@/app/ui/dashboard/Search/Search'
 import User from './User'
-import { MdNotifications, MdOutlineChat, MdPublic } from 'react-icons/md'
-import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react'
+import {
+  MdFullscreen,
+  MdOutlineFullscreenExit,
+  MdNotifications,
+  MdOutlineChat,
+  MdPublic,
+} from 'react-icons/md'
+import { Breadcrumbs, BreadcrumbItem, Tooltip } from '@nextui-org/react'
 
 const Navbar = () => {
   const pathname = usePathname()
   const pathnameArr = pathname.substring(1).split('/')
+
+  const [isFullScreen, setIsFullScreen] = useState(false)
+
+  const handleFullScreen = () => {
+    if (isFullScreen) {
+      document.exitFullscreen()
+    } else {
+      document.documentElement.requestFullscreen()
+    }
+    setIsFullScreen(!isFullScreen)
+  }
+
   return (
     <div className='p-5 flex items-center justify-between round-lg bg-[var(--bgSoft)]'>
       <Breadcrumbs
@@ -27,6 +46,17 @@ const Navbar = () => {
       </Breadcrumbs>
       <div className='flex items-center gap-4'>
         <Search placeholder='Search...' />
+        <Tooltip
+          placement='bottom'
+          content={isFullScreen ? 'Exit Full Screen' : 'Full Screen'}>
+          <div className='' onClick={handleFullScreen}>
+            {isFullScreen ? (
+              <MdOutlineFullscreenExit size={20} />
+            ) : (
+              <MdFullscreen size={20} />
+            )}
+          </div>
+        </Tooltip>
         <MdOutlineChat size={20} />
         <MdNotifications size={20} />
         <MdPublic size={20} />
