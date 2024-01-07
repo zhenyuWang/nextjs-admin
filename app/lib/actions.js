@@ -8,9 +8,9 @@ import { redirect } from 'next/navigation'
 import bcrypt from 'bcrypt'
 import { auth, signIn, signOut } from '@/auth'
 
-export const addUser = async (formData) => {
-  const { username, email, password, phone, address, isAdmin, isActive } =
-    Object.fromEntries(formData)
+export const addUser = async (userInfo) => {
+  const { img, username, email, password, phone, address, isAdmin, isActive } =
+    userInfo
 
   try {
     connectToDB()
@@ -19,6 +19,7 @@ export const addUser = async (formData) => {
     const hashedPassword = await bcrypt.hash(password, salt)
 
     const newUser = new User({
+      img,
       username,
       email,
       password: hashedPassword,

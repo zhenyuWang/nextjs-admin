@@ -6,11 +6,20 @@ import FormInput from '@/app/components/Form/FormInput'
 import { Image, Textarea, Select, SelectItem, Button } from '@nextui-org/react'
 import { MdCloudUpload } from 'react-icons/md'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-import { userFormValidationRules } from '@/app/utils/form'
 import { toast } from 'react-toastify'
+import { userFormValidationRules } from '@/app/utils/form'
 
-const UpdateForm = ({ user, updateUser }) => {
-  const [userInfo, setUserInfo] = useState(user)
+const UpdateForm = ({ addUser }) => {
+  const [userInfo, setUserInfo] = useState({
+    img: '',
+    username: '',
+    email: '',
+    password: '',
+    phone: '',
+    isAdmin: false,
+    isActive: false,
+    address: '',
+  })
   const [isVisiblePassword, setIsVisiblePassword] = useState(false)
   const togglePasswordVisibility = () =>
     setIsVisiblePassword(!isVisiblePassword)
@@ -45,7 +54,7 @@ const UpdateForm = ({ user, updateUser }) => {
   const onSubmit = (data) => {
     data.isAdmin = data.isAdmin === 'yes'
     data.isActive = data.isActive === 'yes'
-    updateUser({ ...data, id: userInfo._id, img: userInfo.img })
+    addUser({ ...data, img: userInfo.img })
   }
 
   return (
@@ -77,7 +86,6 @@ const UpdateForm = ({ user, updateUser }) => {
             placeholder='please input your username'
             description='Spaces not allowed'
             register={register}
-            defaultValue={userInfo.username}
             name='username'
             error={errors.username}
           />
@@ -87,7 +95,6 @@ const UpdateForm = ({ user, updateUser }) => {
             label='Email'
             placeholder='please input your email'
             register={register}
-            defaultValue={userInfo.email}
             name='email'
             error={errors.email}
           />
@@ -122,7 +129,6 @@ const UpdateForm = ({ user, updateUser }) => {
             label='Phone'
             placeholder='please input your phone number'
             register={register}
-            defaultValue={userInfo.phone}
             name='phone'
             type='text'
             error={errors.phone}
@@ -134,14 +140,12 @@ const UpdateForm = ({ user, updateUser }) => {
           <Controller
             name='isAdmin'
             control={control}
-            defaultValue={userInfo.isAdmin ? 'yes' : 'no'}
             rules={userFormValidationRules.isAdmin}
             render={({ field }) => (
               <Select
                 label='isAdmin'
                 labelPlacement='outside'
                 placeholder='Select isAdmin'
-                defaultSelectedKeys={[userInfo.isAdmin ? 'yes' : 'no']}
                 {...field}>
                 <SelectItem key='yes' value='yes'>
                   Yes
@@ -160,14 +164,12 @@ const UpdateForm = ({ user, updateUser }) => {
           <Controller
             name='isActive'
             control={control}
-            defaultValue={userInfo.isActive ? 'yes' : 'no'}
             rules={userFormValidationRules.isActive}
             render={({ field }) => (
               <Select
                 label='isActive'
                 labelPlacement='outside'
                 placeholder='Select isActive'
-                defaultSelectedKeys={[userInfo.isActive ? 'yes' : 'no']}
                 {...field}>
                 <SelectItem key='yes' value='yes'>
                   Yes
@@ -187,7 +189,6 @@ const UpdateForm = ({ user, updateUser }) => {
         <Textarea
           label='Address'
           labelPlacement='outside'
-          defaultValue={userInfo.address}
           placeholder='please input your address'
           {...register('address', userFormValidationRules['address'])}
         />
