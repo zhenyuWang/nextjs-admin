@@ -5,26 +5,28 @@ import {
   DropdownMenu,
   DropdownSection,
   DropdownItem,
-  Avatar,
+  User,
 } from '@nextui-org/react'
 import { MdLogout } from 'react-icons/md'
 
 const NavbarUser = () => {
   const user = {
-    username: 'admin',
+    username: 'snail',
+    role: 'admin',
     email: '123@123.com',
     avatar: '/avatar.png',
   }
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar
-          isBordered
-          as='button'
-          showFallback
+        <User
           name={user.username}
-          className='transition-transform min-w-[40px] min-h-[40px]'
-          src={user?.avatar || '/no-avatar.png'}
+          description={user.role}
+          avatarProps={{
+            isBordered: true,
+            as: 'button',
+            src: user?.avatar || '/no-avatar.png',
+          }}
         />
       </DropdownTrigger>
       <DropdownMenu aria-label='Profile Actions' variant='flat'>
