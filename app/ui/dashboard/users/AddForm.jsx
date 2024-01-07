@@ -9,7 +9,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 import { userFormValidationRules } from '@/app/utils/form'
 
-const UpdateForm = ({ addUser }) => {
+const AddForm = ({ addUser }) => {
   const [userInfo, setUserInfo] = useState({
     img: '',
     username: '',
@@ -87,6 +87,7 @@ const UpdateForm = ({ addUser }) => {
             description='Spaces not allowed'
             register={register}
             name='username'
+            validationRule={userFormValidationRules['username']}
             error={errors.username}
           />
         </div>
@@ -120,6 +121,7 @@ const UpdateForm = ({ addUser }) => {
                 )}
               </button>
             }
+            validationRule={userFormValidationRules['password']}
             type={isVisiblePassword ? 'text' : 'password'}
             error={errors.password}
           />
@@ -130,7 +132,7 @@ const UpdateForm = ({ addUser }) => {
             placeholder='please input your phone number'
             register={register}
             name='phone'
-            type='text'
+            validationRule={userFormValidationRules['phone']}
             error={errors.phone}
           />
         </div>
@@ -144,6 +146,7 @@ const UpdateForm = ({ addUser }) => {
             render={({ field }) => (
               <Select
                 label='isAdmin'
+                size='lg'
                 labelPlacement='outside'
                 placeholder='Select isAdmin'
                 {...field}>
@@ -163,6 +166,7 @@ const UpdateForm = ({ addUser }) => {
         <div className='flex-1'>
           <Controller
             name='isActive'
+            size='lg'
             control={control}
             rules={userFormValidationRules.isActive}
             render={({ field }) => (
@@ -203,4 +207,4 @@ const UpdateForm = ({ addUser }) => {
   )
 }
 
-export default UpdateForm
+export default AddForm

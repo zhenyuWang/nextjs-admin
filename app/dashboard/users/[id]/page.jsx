@@ -1,7 +1,7 @@
 import { fetchUser } from '@/app/lib/data'
 import { updateUser } from '@/app/lib/actions'
 
-import UpdateForm from '@/app/ui/dashboard/users/user/UpdateForm'
+import UpdateForm from '@/app/ui/dashboard/users/UpdateForm'
 
 const UserPage = async ({ params }) => {
   const { id } = params

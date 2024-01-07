@@ -1,6 +1,6 @@
 import { fetchUsers } from '@/app/lib/data'
 import { deleteUser } from '@/app/lib/actions'
-import UserList from '@/app/ui/dashboard/users/user/List'
+import UserList from '@/app/ui/dashboard/users/List'
 
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || ''

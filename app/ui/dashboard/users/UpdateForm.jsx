@@ -79,6 +79,7 @@ const UpdateForm = ({ user, updateUser }) => {
             register={register}
             defaultValue={userInfo.username}
             name='username'
+            validationRule={userFormValidationRules['username']}
             error={errors.username}
           />
         </div>
@@ -89,6 +90,7 @@ const UpdateForm = ({ user, updateUser }) => {
             register={register}
             defaultValue={userInfo.email}
             name='email'
+            validationRule={userFormValidationRules['email']}
             error={errors.email}
           />
         </div>
@@ -113,6 +115,7 @@ const UpdateForm = ({ user, updateUser }) => {
                 )}
               </button>
             }
+            validationRule={userFormValidationRules['password']}
             type={isVisiblePassword ? 'text' : 'password'}
             error={errors.password}
           />
@@ -124,7 +127,7 @@ const UpdateForm = ({ user, updateUser }) => {
             register={register}
             defaultValue={userInfo.phone}
             name='phone'
-            type='text'
+            validationRule={userFormValidationRules['phone']}
             error={errors.phone}
           />
         </div>
@@ -133,6 +136,7 @@ const UpdateForm = ({ user, updateUser }) => {
         <div className='flex-1'>
           <Controller
             name='isAdmin'
+            size='lg'
             control={control}
             defaultValue={userInfo.isAdmin ? 'yes' : 'no'}
             rules={userFormValidationRules.isAdmin}
@@ -165,6 +169,7 @@ const UpdateForm = ({ user, updateUser }) => {
             render={({ field }) => (
               <Select
                 label='isActive'
+                size='lg'
                 labelPlacement='outside'
                 placeholder='Select isActive'
                 defaultSelectedKeys={[userInfo.isActive ? 'yes' : 'no']}
