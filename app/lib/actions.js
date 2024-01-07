@@ -45,6 +45,19 @@ export const deleteUser = async (id) => {
     connectToDB()
 
     await User.findByIdAndDelete(id)
+    const avatarPath = `./public/users/${id}-avatar.png`
+
+    fs.access(avatarPath, fs.constants.F_OK, (err) => {
+      if (!err) {
+        fs.unlink(avatarPath, (err) => {
+          if (err) {
+            console.error(`Error deleting ${avatarPath}: ${err}`)
+          }
+        })
+      } else {
+        console.log('File does not exist')
+      }
+    })
   } catch (err) {
     // TODO: optimize request failure interactions
     console.log(err)
@@ -77,13 +90,13 @@ export const updateUser = async (userInfo) => {
       let dataBuffer = Buffer.from(base64Data, 'base64')
 
       // Write buffer to file
-      fs.writeFile(changedAvatarPath, dataBuffer, function (err) {
-        if (err) {
-          console.log('write user avatar fail', err)
-        } else {
-          isAvatarChanged = true
-        }
-      })
+      try {
+        fs.writeFileSync(changedAvatarPath, dataBuffer)
+
+        isAvatarChanged = true
+      } catch (err) {
+        console.log('write user avatar fail', err)
+      }
     }
 
     const salt = await bcrypt.genSalt(10)
@@ -99,7 +112,7 @@ export const updateUser = async (userInfo) => {
       isActive,
     }
 
-    if (changedAvatarPath) {
+    if (isAvatarChanged) {
       updateFields.img = changedAvatarPath.replace('./public', '')
     }
     if (!password) {
@@ -116,14 +129,14 @@ export const updateUser = async (userInfo) => {
   redirect('/dashboard/users')
 }
 
-export const addProduct = async (formData) => {
-  const { title, price, stock, color, size, category, desc } =
-    Object.fromEntries(formData)
+export const addProduct = async (productInfo) => {
+  const { img, title, price, stock, color, size, category, desc } = productInfo
 
   try {
     connectToDB()
 
     const newProduct = new Product({
+      img,
       title,
       price,
       stock,
@@ -144,13 +157,24 @@ export const addProduct = async (formData) => {
   redirect('/dashboard/products')
 }
 
-export const deleteProduct = async (formData) => {
-  const { id } = Object.fromEntries(formData)
-
+export const deleteProduct = async (id) => {
   try {
     connectToDB()
 
     await Product.findByIdAndDelete(id)
+    const imgPath = `./public/products/${id}-img.png`
+
+    fs.access(imgPath, fs.constants.F_OK, (err) => {
+      if (!err) {
+        fs.unlink(imgPath, (err) => {
+          if (err) {
+            console.error(`Error deleting ${imgPath}: ${err}`)
+          }
+        })
+      } else {
+        console.log('File does not exist')
+      }
+    })
   } catch (err) {
     // TODO: optimize request failure interactions
     console.log(err)
@@ -160,12 +184,28 @@ export const deleteProduct = async (formData) => {
   revalidatePath('/dashboard/products')
 }
 
-export const updateProduct = async (formData) => {
-  const { id, title, price, stock, color, size, category, desc } =
-    Object.fromEntries(formData)
+export const updateProduct = async (productInfo) => {
+  const { id, img, title, price, stock, color, size, category, desc } =
+    productInfo
+
+  let changedImgPath = `./public/products/${id}-img.png`
+  let isImgChanged = false
 
   try {
     connectToDB()
+    if (img?.startsWith('data:image')) {
+      const base64Data = img.replace(/^data:image\/\w+;base64,/, '')
+      let dataBuffer = Buffer.from(base64Data, 'base64')
+
+      // Write buffer to file
+      try {
+        fs.writeFileSync(changedImgPath, dataBuffer)
+
+        isImgChanged = true
+      } catch (err) {
+        console.log('write product img fail', err)
+      }
+    }
 
     const updateFields = {
       title,
@@ -176,11 +216,9 @@ export const updateProduct = async (formData) => {
       category,
       desc,
     }
-
-    Object.keys(updateFields).forEach(
-      (key) =>
-        (updateFields[key] === '' || undefined) && delete updateFields[key]
-    )
+    if (isImgChanged) {
+      updateFields.img = changedImgPath.replace('./public', '')
+    }
 
     await Product.findByIdAndUpdate(id, updateFields)
   } catch (err) {

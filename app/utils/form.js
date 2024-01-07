@@ -42,3 +42,44 @@ export const userFormValidationRules = {
     required: 'Active status is required!',
   },
 }
+
+
+export const productFormValidationRules = {
+  title: {
+    required: 'Title is required!',
+  },
+  price: {
+    required: 'Price is required!',
+    pattern: {
+      value: /^\d+(\.\d{1,2})?$/,
+      message: 'Invalid price. Must be a number with up to two decimal places.',
+    },
+  },
+  stock: {
+    required: 'Stock is required!',
+    pattern: {
+      value: /^\d+(\.\d{1,2})?$/,
+      message: 'Invalid stock. Must be a number with up to two decimal places.',
+    },
+  },
+  color: {
+    required: 'Color is required!',
+    pattern: {
+      value: /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/,
+      message: 'Invalid color. Must be a hex color code.',
+    },
+  },
+  size: {
+    required: 'Size is required!',
+    pattern: {
+      value: /^\d+x\d+$/,
+      message: 'Invalid size. Must be in the format "width x height".',
+    },
+  },
+  category: {
+    required: 'Category is required!',
+  },
+  desc: {
+    required: 'Description is required!',
+  },
+}

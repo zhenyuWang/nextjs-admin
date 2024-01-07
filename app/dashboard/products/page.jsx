@@ -1,6 +1,6 @@
 import { fetchProducts } from '@/app/lib/data'
 import { deleteProduct } from '@/app/lib/actions'
-import List from '@/app/ui/dashboard/products/product/List'
+import List from '@/app/ui/dashboard/products/List'
 
 const ProductsPage = async ({ searchParams }) => {
   const q = searchParams?.q || ''

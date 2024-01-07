@@ -1,5 +1,4 @@
 import { Input } from '@nextui-org/react'
-import { userFormValidationRules } from '../../utils/form'
 
 export default function FormInput({
   defaultValue = '',
@@ -14,6 +13,7 @@ export default function FormInput({
   variant = 'bordered',
   labelPlacement = 'outside',
   endContent = null,
+  validationRule = {},
   error = undefined,
 }) {
   // Notice: Do not use both the Input isRequired and the react-hook-form validation to check the required fields at the same time.
@@ -32,7 +32,7 @@ export default function FormInput({
           placeholder={placeholder}
           description={description}
           endContent={endContent}
-          {...register(name, userFormValidationRules[name])}
+          {...register(name, validationRule)}
         />
       ) : (
         <Input
