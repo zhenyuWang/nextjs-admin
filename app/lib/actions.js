@@ -1,5 +1,6 @@
 'use server'
 
+import fs from 'fs'
 import { revalidatePath } from 'next/cache'
 import { User, Product } from './models'
 import { connectToDB } from './utils'
@@ -53,11 +54,36 @@ export const deleteUser = async (id) => {
 }
 
 export const updateUser = async (userInfo) => {
-  const { id, username, email, password, phone, address, isAdmin, isActive } =
-    userInfo
+  const {
+    id,
+    img,
+    username,
+    email,
+    password,
+    phone,
+    address,
+    isAdmin,
+    isActive,
+  } = userInfo
+
+  let changedAvatarPath = `./public/${id}-avatar.png`
+  let isAvatarChanged = false
 
   try {
     connectToDB()
+    if (img?.startsWith('data:image')) {
+      const base64Data = img.replace(/^data:image\/\w+;base64,/, '')
+      let dataBuffer = Buffer.from(base64Data, 'base64')
+
+      // Write buffer to file
+      fs.writeFile(changedAvatarPath, dataBuffer, function (err) {
+        if (err) {
+          console.log('write user avatar fail', err)
+        } else {
+          isAvatarChanged = true
+        }
+      })
+    }
 
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = password ? await bcrypt.hash(password, salt) : ''
@@ -72,6 +98,9 @@ export const updateUser = async (userInfo) => {
       isActive,
     }
 
+    if (changedAvatarPath) {
+      updateFields.img = changedAvatarPath.replace('./public', '')
+    }
     if (!password) {
       delete updateFields.password
     }

@@ -1,19 +1,38 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import FormInput from '@/app/components/Form/FormInput'
-import { Button, Textarea, Select, SelectItem } from '@nextui-org/react'
+import { Image, Textarea, Select, SelectItem, Button } from '@nextui-org/react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { userFormValidationRules } from '@/app/utils/form'
+import { toast } from 'react-toastify'
 
 const UpdateForm = ({ user, updateUser }) => {
-  const router = useRouter()
-
+  const [userInfo, setUserInfo] = useState(user)
   const [isVisiblePassword, setIsVisiblePassword] = useState(false)
   const togglePasswordVisibility = () =>
     setIsVisiblePassword(!isVisiblePassword)
+
+  const handleAvatarChange = async (e) => {
+    if (e.target.files?.length) {
+      const reader = new FileReader()
+      reader.addEventListener('load', async () => {
+        if (reader.result.length > 1024 * 1024 * 1) {
+          toast.warn('Image size should be less than 1MB', {
+            position: 'top-center',
+            autoClose: 2000,
+            theme: 'dark',
+          })
+        } else {
+          setUserInfo({ ...userInfo, img: reader.result })
+        }
+        // Prevent if the resource is selected twice, onChange is not triggered
+        e.target.value = ''
+      })
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
 
   const {
     register,
@@ -25,13 +44,27 @@ const UpdateForm = ({ user, updateUser }) => {
   const onSubmit = (data) => {
     data.isAdmin = data.isAdmin === 'yes'
     data.isActive = data.isActive === 'yes'
-    updateUser({ ...data, id: user._id })
+    updateUser({ ...data, id: userInfo._id, img: userInfo.img })
   }
 
   return (
     <form
       className='w-full flex flex-col items-center'
       onSubmit={handleSubmit(onSubmit)}>
+      <div className='relative'>
+        <Image
+          src={userInfo.img}
+          radius='full'
+          className='mb-10 w-[100px] h-[100px]'
+        />
+        <input
+          accept='image/*'
+          id='avatar-upload'
+          type='file'
+          className='w-28 h-28 absolute top-0 left-0  opacity-0 z-20 cursor-pointer'
+          onChange={handleAvatarChange}
+        />
+      </div>
       <div className='w-full flex gap-5 flex-col sm:flex-row'>
         <div className='flex-1'>
           <FormInput
@@ -39,7 +72,7 @@ const UpdateForm = ({ user, updateUser }) => {
             placeholder='please input your username'
             description='Spaces not allowed'
             register={register}
-            defaultValue={user.username}
+            defaultValue={userInfo.username}
             name='username'
             error={errors.username}
           />
@@ -49,7 +82,7 @@ const UpdateForm = ({ user, updateUser }) => {
             label='Email'
             placeholder='please input your email'
             register={register}
-            defaultValue={user.email}
+            defaultValue={userInfo.email}
             name='email'
             error={errors.email}
           />
@@ -84,7 +117,7 @@ const UpdateForm = ({ user, updateUser }) => {
             label='Phone'
             placeholder='please input your phone number'
             register={register}
-            defaultValue={user.phone}
+            defaultValue={userInfo.phone}
             name='phone'
             type='text'
             error={errors.phone}
@@ -96,14 +129,14 @@ const UpdateForm = ({ user, updateUser }) => {
           <Controller
             name='isAdmin'
             control={control}
-            defaultValue={user.isAdmin ? 'yes' : 'no'}
+            defaultValue={userInfo.isAdmin ? 'yes' : 'no'}
             rules={userFormValidationRules.isAdmin}
             render={({ field }) => (
               <Select
                 label='isAdmin'
                 labelPlacement='outside'
                 placeholder='Select isAdmin'
-                defaultSelectedKeys={[user.isAdmin ? 'yes' : 'no']}
+                defaultSelectedKeys={[userInfo.isAdmin ? 'yes' : 'no']}
                 {...field}>
                 <SelectItem key='yes' value='yes'>
                   Yes
@@ -122,14 +155,14 @@ const UpdateForm = ({ user, updateUser }) => {
           <Controller
             name='isActive'
             control={control}
-            defaultValue={user.isActive ? 'yes' : 'no'}
+            defaultValue={userInfo.isActive ? 'yes' : 'no'}
             rules={userFormValidationRules.isActive}
             render={({ field }) => (
               <Select
                 label='isActive'
                 labelPlacement='outside'
                 placeholder='Select isActive'
-                defaultSelectedKeys={[user.isActive ? 'yes' : 'no']}
+                defaultSelectedKeys={[userInfo.isActive ? 'yes' : 'no']}
                 {...field}>
                 <SelectItem key='yes' value='yes'>
                   Yes
@@ -149,7 +182,7 @@ const UpdateForm = ({ user, updateUser }) => {
         <Textarea
           label='Address'
           labelPlacement='outside'
-          defaultValue={user.address}
+          defaultValue={userInfo.address}
           placeholder='please input your address'
           {...register('address', userFormValidationRules['address'])}
         />

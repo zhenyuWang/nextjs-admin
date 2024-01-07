@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 import { Inter } from 'next/font/google'
 import './ui/globals.css'
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { NextUIProvider } from '@nextui-org/react'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -24,6 +26,7 @@ export default function RootLayout({ children }) {
       />
       <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       <body className={inter.className}>
+        <ToastContainer />
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
