@@ -67,7 +67,7 @@ export const updateUser = async (userInfo) => {
     isActive,
   } = userInfo
 
-  let changedAvatarPath = `./public/${id}-avatar.png`
+  let changedAvatarPath = `./public/users/${id}-avatar.png`
   let isAvatarChanged = false
 
   try {
