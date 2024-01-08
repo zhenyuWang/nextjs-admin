@@ -3,6 +3,7 @@ import Transactions from './Transactions'
 
 const LatestTransactions = async () => {
   const latestTransactions = await fetchLatestTransactions()
+
   const list = latestTransactions.map((item) => {
     const _item = item._doc
     _item._id = _item._id.toString()

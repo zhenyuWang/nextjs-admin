@@ -1,9 +1,8 @@
-import classes from '@/app/ui/login/login.module.css'
-import LoginForm from '../ui/login/LoginForm/LoginForm'
+import LoginForm from '../ui/login/LoginForm'
 
 const LoginPage = () => {
   return (
-    <div className={classes.container}>
+    <div className='h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#ecddfa] to-[#7ccdf5] dark:from-[#330066] dark:to-[#000]'>
       <LoginForm />
     </div>
   )

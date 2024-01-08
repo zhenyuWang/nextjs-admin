@@ -230,8 +230,8 @@ export const updateProduct = async (productInfo) => {
   redirect('/dashboard/products')
 }
 
-export const authenticate = async (prevState, formData) => {
-  const { username, password } = Object.fromEntries(formData)
+export const authenticate = async (formData) => {
+  const { username, password } = formData
   try {
     await signIn('credentials', { username, password })
   } catch (err) {

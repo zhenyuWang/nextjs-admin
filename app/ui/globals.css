@@ -49,3 +49,50 @@ tr:hover > td:before {
   opacity: 1;
   background-color: #384e7c !important;
 }
+
+.animation-btn {
+  position: relative;
+  transition: 0.38s ease-out;
+  background: linear-gradient(
+    to right,
+    #4c95fa,
+    #38c9fa,
+    #24f9c4,
+    #24f9c4,
+    #38c9fa,
+    #4c95fa
+  );
+  background-size: 1000%;
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.12);
+  animation: glow 60s linear infinite;
+}
+
+.animation-btn:hover::after {
+  opacity: 1;
+}
+
+.animation-btn:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 100px;
+  background: inherit;
+  filter: blur(20px);
+  transition: 0.38s ease-out;
+  opacity: 0;
+}
+
+@keyframes glow {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 1000%;
+  }
+}

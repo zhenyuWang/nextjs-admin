@@ -35,6 +35,9 @@ dependencies:
   react-dom:
     specifier: ^18
     version: 18.0.0(react@18.0.0)
+  react-dom-confetti:
+    specifier: ^0.2.0
+    version: 0.2.0(react@18.0.0)
   react-hook-form:
     specifier: ^7.49.2
     version: 7.49.2(react@18.0.0)
@@ -3351,6 +3354,10 @@ packages:
       esutils: 2.0.3
     dev: true
 
+  /dom-confetti@0.2.2:
+    resolution: {integrity: sha512-+UVH9Y85qmpTnbmFURwLWjqLIykyIrsNSRkPX/eFlBuOURz9RDX8JoZHnajZHyFuCV0w/K3+tZK0ztfoTw6ejg==}
+    dev: false
+
   /dom-helpers@3.4.0:
     resolution: {integrity: sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==}
     dependencies:
@@ -5007,6 +5014,15 @@ packages:
       framer-motion: 10.16.5(react-dom@18.0.0)(react@18.0.0)
       react: 18.0.0
       react-dom: 18.0.0(react@18.0.0)
+    dev: false
+
+  /react-dom-confetti@0.2.0(react@18.0.0):
+    resolution: {integrity: sha512-+XRTi+WlCrcRN2dTjdEopOaPFtS7hpaHRRQ0sHiVRGqpchKz4QVh3i+6eLEEpNHYpN2VgPmhjvJ/vnjmUYhlIQ==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      dom-confetti: 0.2.2
+      react: 18.0.0
     dev: false
 
   /react-dom@18.0.0(react@18.0.0):

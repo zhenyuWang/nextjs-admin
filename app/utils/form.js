@@ -1,3 +1,21 @@
+export const loginFormValidationRules = {
+  username: {
+    required: 'Username is required!',
+    pattern: {
+      value: /^\S+$/,
+      message: 'Username should not contain spaces.',
+    },
+  },
+  password: {
+    required: 'Password is required!',
+    pattern: {
+      value: /^[^\s]{8,20}$/,
+      message:
+        'Please enter a password of 8 to 20 characters. Spaces are not allowed.',
+    },
+  },
+}
+
 export const userFormValidationRules = {
   username: {
     required: 'Username is required!',
@@ -42,7 +60,6 @@ export const userFormValidationRules = {
     required: 'Active status is required!',
   },
 }
-
 
 export const productFormValidationRules = {
   title: {
