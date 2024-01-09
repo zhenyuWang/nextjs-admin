@@ -10,7 +10,7 @@ import {
   MdOutlineChat,
   MdPublic,
 } from 'react-icons/md'
-import { Breadcrumbs, BreadcrumbItem, Tooltip } from '@nextui-org/react'
+import { Breadcrumbs, BreadcrumbItem, Tooltip, Badge } from '@nextui-org/react'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -58,7 +58,9 @@ const Navbar = () => {
           </div>
         </Tooltip>
         <MdOutlineChat size={20} />
-        <MdNotifications size={20} />
+        <Badge content='5' color='success'>
+          <MdNotifications size={20} />
+        </Badge>
         <MdPublic size={20} />
         <User />
       </div>
