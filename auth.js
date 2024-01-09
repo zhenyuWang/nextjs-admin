@@ -5,22 +5,26 @@ import { connectToDB } from './app/lib/utils'
 import bcrypt from 'bcrypt'
 import { User } from './app/lib/models'
 
+let loginErrorMsg = ''
+export const getLoginErrorMsg = () => loginErrorMsg
+
 const login = async (credentials) => {
   try {
     connectToDB()
     const user = await User.findOne({ username: credentials.username })
-    if (!user || !user.isAdmin) throw new Error('Wrong credentials!')
+    if (!user) throw new Error('The user does not exist!')
+    if (!user.isAdmin) throw new Error('You are not an admin!')
 
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password
     )
 
-    if (!isPasswordCorrect) throw new Error('Wrong credentials!')
+    if (!isPasswordCorrect) throw new Error('Wrong password!')
 
     return user
   } catch (err) {
-    throw new Error('Failed to login!')
+    throw new Error(err.message)
   }
 }
 
@@ -33,6 +37,7 @@ export const { signIn, signOut, auth } = NextAuth({
           const user = await login(credentials)
           return user
         } catch (err) {
+          loginErrorMsg = err.message
           return null
         }
       },

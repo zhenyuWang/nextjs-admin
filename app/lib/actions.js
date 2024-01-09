@@ -6,7 +6,7 @@ import { User, Product } from './models'
 import { connectToDB } from './utils'
 import { redirect } from 'next/navigation'
 import bcrypt from 'bcrypt'
-import { auth, signIn, signOut } from '@/auth'
+import { auth, signIn, signOut, getLoginErrorMsg } from '@/auth'
 
 export const addUser = async (userInfo) => {
   const { img, username, email, password, phone, address, isAdmin, isActive } =
@@ -236,7 +236,7 @@ export const authenticate = async (formData) => {
     await signIn('credentials', { username, password })
   } catch (err) {
     if (err.message.includes('CredentialsSignin')) {
-      return 'Wrong Credentials!'
+      return getLoginErrorMsg()
     }
     throw err
   }
