@@ -7,6 +7,7 @@ import { Image, Textarea, Select, SelectItem, Button } from '@nextui-org/react'
 import { MdCloudUpload } from 'react-icons/md'
 import { toast } from 'react-toastify'
 import { productFormValidationRules } from '@/app/utils/form'
+import { Spinner } from '@nextui-org/react'
 
 const AddForm = ({ product, updateProduct }) => {
   const [productInfo, setProductInfo] = useState(product)
@@ -38,8 +39,12 @@ const AddForm = ({ product, updateProduct }) => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
-    updateProduct({ ...data, id: productInfo._id, img: productInfo.img })
+  const [submitting, setSubmitting] = useState(false)
+
+  const onSubmit = async (data) => {
+    setSubmitting(true)
+    await updateProduct({ ...data, id: productInfo._id, img: productInfo.img })
+    setSubmitting(false)
   }
 
   return (
@@ -168,7 +173,14 @@ const AddForm = ({ product, updateProduct }) => {
           {errors.desc?.message}
         </div>
       </div>
-      <Button className='w-full mt-6' color='primary' type='submit'>
+      <Button
+        disabled={submitting}
+        className='w-full mt-6'
+        color='primary'
+        type='submit'>
+        {submitting ? (
+          <Spinner size='sm' className='submit-btn-spinner mr-2' />
+        ) : null}
         Submit
       </Button>
     </form>

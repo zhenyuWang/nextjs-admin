@@ -11,7 +11,7 @@ import { toast } from 'react-toastify'
 import { authenticate } from '@/app/lib/actions'
 
 const LoginPage = () => {
-  const [logging, setLogging] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [loginSuccess, setLoginSuccess] = useState(false)
 
   const [isVisiblePassword, setIsVisiblePassword] = useState(false)
@@ -25,7 +25,7 @@ const LoginPage = () => {
   } = useForm()
 
   const handleLogin = async (data) => {
-    setLogging(true)
+    setSubmitting(true)
     authenticate(data)
     const errMsg = await authenticate(data)
     if (errMsg) {
@@ -34,7 +34,7 @@ const LoginPage = () => {
         autoClose: 2000,
         theme: 'dark',
       })
-      setLogging(false)
+      setSubmitting(false)
     } else {
       setLoginSuccess(true)
     }
@@ -79,10 +79,10 @@ const LoginPage = () => {
           <div className='relative'>
             <button
               className='w-full h-10 mt-6 flex items-center justify-center animation-btn rounded-3xl'
-              disabled={logging}
+              disabled={submitting}
               type='submit'>
-              {logging ? (
-                <Spinner size='sm' className='login-btn-spinner mr-2' />
+              {submitting ? (
+                <Spinner size='sm' className='submit-btn-spinner mr-2' />
               ) : null}
               Submit
             </button>

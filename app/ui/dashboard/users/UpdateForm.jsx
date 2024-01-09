@@ -8,6 +8,7 @@ import { MdCloudUpload } from 'react-icons/md'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { userFormValidationRules } from '@/app/utils/form'
 import { toast } from 'react-toastify'
+import { Spinner } from '@nextui-org/react'
 
 const UpdateForm = ({ user, updateUser }) => {
   const [userInfo, setUserInfo] = useState(user)
@@ -42,10 +43,14 @@ const UpdateForm = ({ user, updateUser }) => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
+  const [submitting, setSubmitting] = useState(false)
+
+  const onSubmit = async (data) => {
+    setSubmitting(true)
     data.isAdmin = data.isAdmin === 'yes'
     data.isActive = data.isActive === 'yes'
-    updateUser({ ...data, id: userInfo._id, img: userInfo.img })
+    await updateUser({ ...data, id: userInfo._id, img: userInfo.img })
+    setSubmitting(false)
   }
 
   return (
@@ -200,7 +205,14 @@ const UpdateForm = ({ user, updateUser }) => {
           {errors.address?.message}
         </div>
       </div>
-      <Button className='w-full mt-6' color='primary' type='submit'>
+      <Button
+        disabled={submitting}
+        className='w-full mt-6'
+        color='primary'
+        type='submit'>
+        {submitting ? (
+          <Spinner size='sm' className='submit-btn-spinner mr-2' />
+        ) : null}
         Submit
       </Button>
     </form>
