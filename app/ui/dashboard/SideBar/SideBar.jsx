@@ -1,23 +1,18 @@
 'use client'
 
 import Head from './Head'
-import MenuLink from './MenuLink'
-import { Accordion, AccordionItem } from '@nextui-org/react'
 import {
-  MdOutlineKeyboardArrowRight,
   MdPages,
-  MdOutlineAnalytics,
-  MdPerson,
   MdDashboard,
   MdSupervisedUserCircle,
   MdShoppingBag,
-  MdAttachMoney,
-  MdWork,
-  MdAnalytics,
-  MdPeople,
-  MdOutlineSettings,
-  MdHelpCenter,
+  MdBoy,
+  MdHelp,
 } from 'react-icons/md'
+import { LiaSitemapSolid } from 'react-icons/lia'
+import { TbSitemap } from 'react-icons/tb'
+import { AiFillCodepenCircle } from 'react-icons/ai'
+import List from './List'
 
 const menuItems = [
   {
@@ -25,63 +20,70 @@ const menuItems = [
     title: 'Pages',
     list: [
       {
+        icon: <MdDashboard />,
         title: 'Dashboard',
         path: '/dashboard',
-        icon: <MdDashboard />,
       },
       {
+        icon: <MdSupervisedUserCircle />,
         title: 'Users',
         path: '/dashboard/users',
-        icon: <MdSupervisedUserCircle />,
       },
       {
+        icon: <MdShoppingBag />,
         title: 'Products',
         path: '/dashboard/products',
-        icon: <MdShoppingBag />,
-      },
-      {
-        title: 'Transactions',
-        path: '/dashboard/transactions',
-        icon: <MdAttachMoney />,
       },
     ],
   },
   {
-    icon: <MdOutlineAnalytics />,
-    title: 'Analytics',
+    icon: <LiaSitemapSolid />,
+    title: 'Multilevel nesting',
     list: [
       {
-        title: 'Revenue',
-        path: '/dashboard/revenue',
-        icon: <MdWork />,
+        icon: <TbSitemap />,
+        title: 'First level 1',
+        list: [
+          {
+            icon: <TbSitemap />,
+            title: 'Second level',
+            list: [
+              {
+                icon: <MdBoy />,
+                title: 'Third level',
+                path: '/dashboard/multilevel-nesting/first-level/second-level/third-level',
+              },
+            ],
+          },
+        ],
       },
       {
-        title: 'Reports',
-        path: '/dashboard/reports',
-        icon: <MdAnalytics />,
+        icon: <TbSitemap />,
+        title: 'First level 2',
+        list: [
+          {
+            icon: <MdBoy />,
+            title: 'Second level',
+            path: '/dashboard/multilevel-nesting/first-level/second-level',
+          },
+        ],
       },
       {
-        title: 'Teams',
-        path: '/dashboard/teams',
-        icon: <MdPeople />,
+        icon: <MdBoy />,
+        title: 'First level page',
+        path: '/dashboard/multilevel-nesting/first-level',
       },
     ],
   },
   {
-    icon: <MdPerson />,
-    title: 'User',
-    list: [
-      {
-        title: 'Settings',
-        path: '/dashboard/settings',
-        icon: <MdOutlineSettings />,
-      },
-      {
-        title: 'Help',
-        path: '/dashboard/help',
-        icon: <MdHelpCenter />,
-      },
-    ],
+    icon: <AiFillCodepenCircle />,
+    title: 'Repository',
+    href: 'https://github.com/zhenyuWang/nextjs-admin',
+  },
+  {
+    icon: <MdHelp />,
+    title: 'Help',
+    href: 'https://github.com/zhenyuWang/nextjs-admin/issues',
   },
 ]
 
@@ -89,21 +91,7 @@ const Sidebar = () => {
   return (
     <div>
       <Head />
-      <Accordion
-        className='p-0'
-        itemClasses={{ title: 'text-white', heading: ' px-3' }}>
-        {menuItems.map((item) => (
-          <AccordionItem
-            key={item.title}
-            startContent={item.icon}
-            indicator={<MdOutlineKeyboardArrowRight />}
-            title={item.title}>
-            {item.list.map((link) => (
-              <MenuLink item={link} key={link.title} />
-            ))}
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <List list={menuItems} level={0} />
     </div>
   )
 }

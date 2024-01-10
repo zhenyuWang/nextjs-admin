@@ -37,7 +37,7 @@ const NavbarUser = () => {
           <DropdownItem
             key='github'
             target='_blank'
-            href='https://github.com/zhenyuWang/nextjs-admin'>
+            href='https://github.com/zhenyuWang'>
             GitHub
           </DropdownItem>
         </DropdownSection>

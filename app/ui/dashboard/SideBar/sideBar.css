@@ -1,0 +1,16 @@
+.side-bar-item > h2 {
+  padding: 5px 10px;
+  position: relative;
+}
+
+.side-bar-item:hover > h2 > button > div > svg,
+.side-bar-item:hover > h2 > button > div > span.text-white,
+.side-bar-item:hover > h2 > button > div > span > a,
+.side-bar-item.active > h2 > button > div > svg,
+.side-bar-item.active > h2 > button > div > span > a {
+  color: #3b82f6;
+}
+
+.side-bar-item > section > div {
+  padding: 0;
+}
