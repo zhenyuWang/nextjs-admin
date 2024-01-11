@@ -150,6 +150,9 @@ const AddForm = ({ product, updateProduct }) => {
                 <SelectItem key='phone' value='phone'>
                   Phone
                 </SelectItem>
+                <SelectItem key='headset' value='headset'>
+                  Headset
+                </SelectItem>
                 <SelectItem key='computer' value='computer'>
                   Computer
                 </SelectItem>

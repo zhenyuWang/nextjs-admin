@@ -82,15 +82,15 @@ export const productFormValidationRules = {
   color: {
     required: 'Color is required!',
     pattern: {
-      value: /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/,
-      message: 'Invalid color. Must be a hex color code.',
+      value: /^.{2,10}$/,
+      message: 'Invalid color. Must be a string with 2 to 10 characters.',
     },
   },
   size: {
     required: 'Size is required!',
     pattern: {
-      value: /^\d+x\d+$/,
-      message: 'Invalid size. Must be in the format "width x height".',
+      value: /^.{2,10}$/,
+      message: 'Invalid size. Must be a string with 2 to 10 characters.',
     },
   },
   category: {
