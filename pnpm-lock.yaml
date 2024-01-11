@@ -44,12 +44,18 @@ dependencies:
   react-icons:
     specifier: ^4.12.0
     version: 4.12.0(react@18.0.0)
+  react-redux:
+    specifier: ^9.0.4
+    version: 9.0.4(react@18.0.0)(redux@5.0.1)
   react-toastify:
     specifier: ^9.1.3
     version: 9.1.3(react-dom@18.0.0)(react@18.0.0)
   recharts:
     specifier: ^2.10.3
     version: 2.10.3(prop-types@15.8.1)(react-dom@18.0.0)(react@18.0.0)
+  redux:
+    specifier: ^5.0.1
+    version: 5.0.1
   use-debounce:
     specifier: ^10.0.0
     version: 10.0.0(react@18.0.0)
@@ -2704,6 +2710,10 @@ packages:
       undici-types: 5.26.5
     dev: false
 
+  /@types/use-sync-external-store@0.0.3:
+    resolution: {integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==}
+    dev: false
+
   /@types/webidl-conversions@7.0.3:
     resolution: {integrity: sha512-CiJJvcRtIgzadHCYXw7dqEnMNRjhGZlYK05Mj9OyktqV8uVT8fD2BFOB7S1uwBE3Kj2Z+4UyPmFw/Ixgw/LAlA==}
     dev: false
@@ -5059,6 +5069,27 @@ packages:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
     dev: false
 
+  /react-redux@9.0.4(react@18.0.0)(redux@5.0.1):
+    resolution: {integrity: sha512-9J1xh8sWO0vYq2sCxK2My/QO7MzUMRi3rpiILP/+tDr8krBHixC6JMM17fMK88+Oh3e4Ae6/sHIhNBgkUivwFA==}
+    peerDependencies:
+      '@types/react': ^18.2.25
+      react: ^18.0
+      react-native: '>=0.69'
+      redux: ^5.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react-native:
+        optional: true
+      redux:
+        optional: true
+    dependencies:
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.0.0
+      redux: 5.0.1
+      use-sync-external-store: 1.2.0(react@18.0.0)
+    dev: false
+
   /react-remove-scroll-bar@2.3.4(react@18.0.0):
     resolution: {integrity: sha512-63C4YQBUt0m6ALadE9XV56hV8BgJWDmmTPY758iIJjfQKt2nYwoUrPk0LXRXcB/yIj82T1/Ixfdpdk68LwIB0A==}
     engines: {node: '>=10'}
@@ -5213,6 +5244,10 @@ packages:
       recharts-scale: 0.4.5
       tiny-invariant: 1.3.1
       victory-vendor: 36.7.0
+    dev: false
+
+  /redux@5.0.1:
+    resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
     dev: false
 
   /reflect.getprototypeof@1.0.4:
@@ -5823,6 +5858,14 @@ packages:
       detect-node-es: 1.1.0
       react: 18.0.0
       tslib: 2.6.2
+    dev: false
+
+  /use-sync-external-store@1.2.0(react@18.0.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.0.0
     dev: false
 
   /util-deprecate@1.0.2:

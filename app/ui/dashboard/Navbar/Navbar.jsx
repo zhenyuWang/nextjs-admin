@@ -1,4 +1,6 @@
 'use client'
+
+import { useSelector, useDispatch } from 'react-redux'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import Search from '@/app/ui/dashboard/Search/Search'
@@ -9,10 +11,18 @@ import {
   MdNotifications,
   MdOutlineChat,
   MdPublic,
+  MdOutlineFormatIndentDecrease,
+  MdOutlineFormatIndentIncrease,
 } from 'react-icons/md'
 import { Breadcrumbs, BreadcrumbItem, Tooltip, Badge } from '@nextui-org/react'
 
 const Navbar = () => {
+  const isSidebarShown = useSelector((state) => state.sideBarState.isShow)
+  const dispatch = useDispatch()
+  const toggleIsShowSideBar = () => {
+    dispatch({ type: 'sideBar/toggleIsShow' })
+  }
+
   const pathname = usePathname()
   const pathnameArr = pathname.substring(1).split('/')
 
@@ -28,22 +38,34 @@ const Navbar = () => {
   }
 
   return (
-    <div className='p-5 flex items-center justify-between round-lg bg-[var(--bgSoft)]'>
-      <Breadcrumbs
-        color='primary'
-        size='lg'
-        itemClasses={{
-          item: ['text-slate-200'],
-          separator: 'text-slate-500',
-        }}>
-        {pathnameArr.map((item, index) => (
-          <BreadcrumbItem
-            key={index}
-            href={`/${pathnameArr.slice(0, index + 1).join('/')}`}>
-            {item}
-          </BreadcrumbItem>
-        ))}
-      </Breadcrumbs>
+    <div
+      className={`fixed top-0 ${
+        isSidebarShown ? 'left-[270px]' : 'left-0'
+      } right-0 z-50 p-5 transition-width flex items-center justify-between round-lg bg-[var(--bgSoft)]`}>
+      <div className='flex items-center'>
+        <div onClick={toggleIsShowSideBar} className='mr-2'>
+          {isSidebarShown ? (
+            <MdOutlineFormatIndentDecrease size={20} />
+          ) : (
+            <MdOutlineFormatIndentIncrease size={20} />
+          )}
+        </div>
+        <Breadcrumbs
+          color='primary'
+          size='lg'
+          itemClasses={{
+            item: ['text-slate-200'],
+            separator: 'text-slate-500',
+          }}>
+          {pathnameArr.map((item, index) => (
+            <BreadcrumbItem
+              key={index}
+              href={`/${pathnameArr.slice(0, index + 1).join('/')}`}>
+              {item}
+            </BreadcrumbItem>
+          ))}
+        </Breadcrumbs>
+      </div>
       <div className='flex items-center gap-4'>
         <Search placeholder='Search...' />
         <Tooltip

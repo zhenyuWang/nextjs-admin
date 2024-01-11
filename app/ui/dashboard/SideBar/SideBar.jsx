@@ -1,5 +1,6 @@
 'use client'
 
+import { useSelector } from 'react-redux'
 import Head from './Head'
 import {
   MdPages,
@@ -88,10 +89,17 @@ const menuItems = [
 ]
 
 const Sidebar = () => {
+  const isSidebarShown = useSelector((state) => state.sideBarState.isShow)
+
   return (
-    <div>
-      <Head />
-      <List list={menuItems} level={0} />
+    <div
+      className={`${
+        isSidebarShown ? 'w-[250px]' : 'w-0'
+      } transition-width bg-[var(--bgSoft)] overflow-y-auto`}>
+      <div className='w-[250px]'>
+        <Head />
+        <List list={menuItems} level={0} />
+      </div>
     </div>
   )
 }
