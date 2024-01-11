@@ -52,8 +52,10 @@ const Transactions = ({ list }) => {
             <TableCell className='flex items-center'>
               <Image
                 width={40}
-                src='/no-avatar.png'
-                className='rounded-[50%]'
+                height={40}
+                className='h-[40px] w-[40px]'
+                src={item.img}
+                radius='full'
               />
               <span className='ml-2 z-10'>{item.username}</span>
             </TableCell>
