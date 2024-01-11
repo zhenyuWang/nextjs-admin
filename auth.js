@@ -48,6 +48,7 @@ export const { signIn, signOut, auth } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.username = user.username
+        token.isAdmin = user.isAdmin
         token.img = user.img
       }
       return token
@@ -55,6 +56,8 @@ export const { signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       if (token) {
         session.username = token.username
+        session.email = token.email
+        session.isAdmin = token.isAdmin
         session.img = token.img
       }
       return session

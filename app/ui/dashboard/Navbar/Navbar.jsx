@@ -16,7 +16,7 @@ import {
 } from 'react-icons/md'
 import { Breadcrumbs, BreadcrumbItem, Tooltip, Badge } from '@nextui-org/react'
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
   const isSidebarShown = useSelector((state) => state.sideBarState.isShow)
   const dispatch = useDispatch()
   const toggleIsShowSideBar = () => {
@@ -84,7 +84,7 @@ const Navbar = () => {
           <MdNotifications size={20} />
         </Badge>
         <MdPublic size={20} />
-        <User />
+        <User user={user} />
       </div>
     </div>
   )

@@ -1,12 +1,15 @@
 import SideBar from '@/app/ui/dashboard/SideBar/SideBar'
 import Navbar from '@/app/ui/dashboard/Navbar/Navbar'
+import { auth } from '@/auth'
 
-const Layout = ({ children }) => {
+const Layout = async ({ children }) => {
+  const user = await auth()
+
   return (
     <div className='h-screen flex'>
       <SideBar />
       <div className='flex-1 px-5 pb-5 pt-[80px] relative overflow-auto w-[calc(100vh-260px]'>
-        <Navbar />
+        <Navbar user={user} />
         {children}
       </div>
     </div>

@@ -9,23 +9,17 @@ import {
 } from '@nextui-org/react'
 import { MdLogout } from 'react-icons/md'
 
-const NavbarUser = () => {
-  const user = {
-    username: 'snail',
-    role: 'admin',
-    email: '123@123.com',
-    avatar: '/avatar.png',
-  }
+const NavbarUser = ({ user }) => {
   return (
     <Dropdown>
       <DropdownTrigger>
         <User
           name={user.username}
-          description={user.role}
+          description={user.isAdmin ? 'Admin' : 'User'}
           avatarProps={{
             isBordered: true,
             as: 'button',
-            src: user?.avatar || '/no-avatar.png',
+            src: user.img || '/no-avatar.png',
           }}
         />
       </DropdownTrigger>
