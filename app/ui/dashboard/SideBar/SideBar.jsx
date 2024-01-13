@@ -97,7 +97,7 @@ const Sidebar = ({ user }) => {
   return (
     <div
       className={`${
-        isSidebarShown ? 'w-[250px] min-w-[250px]' : 'w-0'
+        isSidebarShown ? 'w-[250px]' : 'w-0'
       } transition-width bg-slate-100 dark:bg-[var(--bgSoft)] overflow-x-hidden overflow-y-auto`}
     >
       <div className='w-[250px]'>
