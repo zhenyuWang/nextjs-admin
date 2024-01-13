@@ -1,8 +1,9 @@
 'use client'
 
 import { useSelector, useDispatch } from 'react-redux'
+import { useTheme } from '@/app/context/theme-context'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Search from '@/app/ui/dashboard/Search/Search'
 import User from './User'
 import {
@@ -15,6 +16,7 @@ import {
   MdOutlineFormatIndentIncrease,
 } from 'react-icons/md'
 import { Breadcrumbs, BreadcrumbItem, Tooltip, Badge } from '@nextui-org/react'
+import ThemeSwitch from '@/app/components/ThemeSwitch'
 
 const Navbar = ({ user }) => {
   const isSidebarShown = useSelector((state) => state.sideBarState.isShow)
@@ -22,6 +24,28 @@ const Navbar = ({ user }) => {
   const toggleIsShowSideBar = () => {
     dispatch({ type: 'sideBar/toggleIsShow' })
   }
+
+  const watchWindowSize = () => {
+    if (window.innerWidth < 1180) {
+      dispatch({ type: 'sideBar/hide' })
+    } else {
+      dispatch({ type: 'sideBar/show' })
+    }
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      watchWindowSize()
+      window.addEventListener('resize', watchWindowSize)
+
+      return () => {
+        window.removeEventListener('resize', watchWindowSize)
+      }
+    }
+  }, [])
+
+  const themeContext = useTheme()
+  const theme = themeContext?.theme
 
   const pathname = usePathname()
   const pathnameArr = pathname.substring(1).split('/')
@@ -39,9 +63,7 @@ const Navbar = ({ user }) => {
 
   return (
     <div
-      className={`fixed top-0 ${
-        isSidebarShown ? 'left-[270px]' : 'left-0'
-      } right-0 z-50 p-5 transition-width flex items-center justify-between round-lg bg-[var(--bgSoft)]`}>
+      className={`absolute top-0 left-0 right-0 z-50 p-4 transition-width flex items-center justify-between round-lg shadow-navbar dark:shadow-navbarDark bg-slate-100 dark:bg-[var(--bgSoft)]`}>
       <div className='flex items-center'>
         <div onClick={toggleIsShowSideBar} className='mr-2'>
           {isSidebarShown ? (
@@ -54,7 +76,7 @@ const Navbar = ({ user }) => {
           color='primary'
           size='lg'
           itemClasses={{
-            item: ['text-slate-200'],
+            item: [theme === 'light' ? '' : 'text-slate-200'],
             separator: 'text-slate-500',
           }}>
           {pathnameArr.map((item, index) => (
@@ -84,6 +106,7 @@ const Navbar = ({ user }) => {
           <MdNotifications size={20} />
         </Badge>
         <MdPublic size={20} />
+        <ThemeSwitch />
         <User user={user} />
       </div>
     </div>

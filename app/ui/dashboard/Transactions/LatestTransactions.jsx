@@ -13,7 +13,7 @@ const LatestTransactions = async () => {
 
   return (
     <div>
-      <h2 className='mb-6 text-slate-500'>Latest Transactions</h2>
+      <h2 className='mb-6 dark:text-slate-500'>Latest Transactions</h2>
       <Transactions list={list} />
     </div>
   )

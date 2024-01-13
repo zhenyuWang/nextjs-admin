@@ -6,7 +6,7 @@ import LatestTransactions from '@/app/ui/dashboard/Transactions/LatestTransactio
 
 const Dashboard = () => {
   return (
-    <div className='flex mt-5 relative gap-5'>
+    <div className='flex relative gap-5'>
       <div className='min-w-[600px] flex basis-3/4 flex-col gap-5'>
         <div className='flex gap-5 justify-between'>
           {cards.map((item) => (
@@ -16,7 +16,7 @@ const Dashboard = () => {
         <LatestTransactions />
         <Chart />
       </div>
-      <div className='w-[calc(25%-20px)] min-w-[230px] xl:fixed xl:w-[calc((100%-300px)/4-20px)] xl:right-5'>
+      <div className='w-[calc(25%-20px)] min-w-[230px] xl:fixed xl:w-[calc((100%-300px)/4-20px)] xl:right-10'>
         <RightBar />
       </div>
     </div>

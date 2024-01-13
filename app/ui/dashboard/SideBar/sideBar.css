@@ -4,7 +4,7 @@
 }
 
 .side-bar-item:hover > h2 > button > div > svg,
-.side-bar-item:hover > h2 > button > div > span.text-white,
+.side-bar-item:hover > h2 > button > div > span.accordion-item,
 .side-bar-item:hover > h2 > button > div > span > a,
 .side-bar-item.active > h2 > button > div > svg,
 .side-bar-item.active > h2 > button > div > span > a {

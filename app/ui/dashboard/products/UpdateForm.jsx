@@ -49,7 +49,7 @@ const AddForm = ({ product, updateProduct }) => {
 
   return (
     <form
-      className='w-full mt-8 flex flex-col items-center'
+      className='w-full mt-4 flex flex-col items-center'
       onSubmit={handleSubmit(onSubmit)}>
       <div className='relative mb-10'>
         <Image

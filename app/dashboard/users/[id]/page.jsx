@@ -10,11 +10,7 @@ const UserPage = async ({ params }) => {
   const userInfo = user._doc
   userInfo._id = userInfo._id.toString()
 
-  return (
-    <div className='pt-8 flex flex-col items-center'>
-      <UpdateForm user={userInfo} updateUser={updateUser} />
-    </div>
-  )
+  return <UpdateForm user={userInfo} updateUser={updateUser} />
 }
 
 export default UserPage

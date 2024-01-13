@@ -28,7 +28,9 @@
   background: #ffffff;
 }
 
-body {
+body{background-color: #f8f8f8;}
+
+.dark body {
   background-color: var(--bg);
   color: var(--text);
 }
@@ -37,15 +39,23 @@ a {
   text-decoration: none;
 }
 
-th {
+.dark th {
   background-color: #384e7c !important;
   color: white !important;
 }
 
 tr[data-odd='true'] > td::before {
-  background-color: #253352 !important;
+  background-color: #F4F4F5 !important;
 }
 tr:hover > td:before {
+  opacity: 1;
+  background-color: #f6f6f7 !important;
+}
+
+.dark tr[data-odd='true'] > td::before {
+  background-color: #253352 !important;
+}
+.dark tr:hover > td:before {
   opacity: 1;
   background-color: #384e7c !important;
 }

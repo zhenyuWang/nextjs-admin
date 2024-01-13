@@ -1,5 +1,6 @@
 'use client'
 
+import { useTheme } from '@/app/context/theme-context'
 import {
   Card as CardComp,
   CardHeader,
@@ -10,12 +11,14 @@ import { MdSupervisedUserCircle } from 'react-icons/md'
 import dynamic from 'next/dynamic'
 
 const Card = ({ item }) => {
+  const themeContext = useTheme()
+  const theme = themeContext?.theme
   const AnimatedNumbers = dynamic(() => import('react-animated-numbers'), {
     ssr: false,
   })
 
   return (
-    <CardComp className='flex-1 bg-slate-800 text-white'>
+    <CardComp className='flex-1 bg-slate-200 dark:bg-slate-800 dark:text-white'>
       <CardHeader>
         <MdSupervisedUserCircle size={24} />
         <span className='ml-2'>{item.title}</span>
@@ -24,7 +27,7 @@ const Card = ({ item }) => {
         <AnimatedNumbers
           animateToNumber={item.number}
           fontStyle={{
-            color: 'white',
+            color: theme === 'light' ? 'black' : 'white',
             fontSize: 24,
           }}
         />

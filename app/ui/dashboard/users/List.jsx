@@ -19,10 +19,14 @@ import {
 } from '@nextui-org/react'
 import { MdAdd } from 'react-icons/md'
 import Search from '@/app/ui/dashboard/Search/Search'
+import { useTheme } from '@/app/context/theme-context'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
 const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
+  const themeContext = useTheme()
+  const theme = themeContext?.theme
+
   const searchParams = useSearchParams()
   const { replace } = useRouter()
   const pathname = usePathname()
@@ -39,12 +43,12 @@ const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
     <>
       <Table
         isHeaderSticky
-        removeWrapper
+        removeWrapper={theme !== 'light'}
         color='primary'
         isStriped
         aria-label='users table'
         topContent={
-          <div className='pt-8 pb-2 flex justify-between'>
+          <div className='pb-2 flex justify-between'>
             <Search placeholder='Search for a user...' />
             <Button
               as={Link}

@@ -8,9 +8,13 @@ const Layout = async ({ children }) => {
   return (
     <div className='h-screen flex'>
       <SideBar />
-      <div className='flex-1 px-5 pb-5 pt-[80px] relative overflow-auto w-[calc(100vh-260px]'>
+      <div className='flex-1 h-full relative w-[calc(100vh-260px]'>
         <Navbar user={user} />
-        {children}
+        <div className='h-full pt-[90px] pl-4 pb-4 pr-4 overflow-auto'>
+          <div className='min-h-full p-4 rounded-lg bg-slate-100 dark:bg-slate-800 dark:text-white'>
+            {children}
+          </div>
+        </div>
       </div>
     </div>
   )

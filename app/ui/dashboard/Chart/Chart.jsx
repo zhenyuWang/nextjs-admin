@@ -1,5 +1,6 @@
 'use client'
 
+import { useTheme } from '@/app/context/theme-context'
 import {
   LineChart,
   Line,
@@ -49,9 +50,12 @@ const data = [
 ]
 
 const Chart = () => {
+  const themeContext = useTheme()
+  const theme = themeContext?.theme
+
   return (
-    <div className='h-[450px] p-5 rounded-lg bg-[var(--bgSoft)]'>
-      <h2 className='mb-6 text-slate-500'>Weekly Recap</h2>
+    <div className='h-[450px] p-5 rounded-lg dark:bg-[var(--bgSoft)]'>
+      <h2 className='mb-6 dark:text-slate-500'>Weekly Recap</h2>
       <ResponsiveContainer width='100%' height='90%'>
         <LineChart
           width={500}
@@ -65,7 +69,13 @@ const Chart = () => {
           }}>
           <XAxis dataKey='name' />
           <YAxis />
-          <Tooltip contentStyle={{ background: '#151c2c', border: 'none' }} />
+          <Tooltip
+            contentStyle={{
+              background: theme === 'light' ? '#f8f8f8' : '#151c2c',
+              border: 'none',
+              borderRadius: '6px',
+            }}
+          />
           <Legend />
           <Line
             type='monotone'

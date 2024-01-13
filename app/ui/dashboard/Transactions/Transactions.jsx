@@ -1,5 +1,6 @@
 'use client'
 
+import { useTheme } from '@/app/context/theme-context'
 import {
   Table,
   TableHeader,
@@ -13,6 +14,9 @@ import {
 } from '@nextui-org/react'
 
 const Transactions = ({ list }) => {
+  const themeContext = useTheme()
+  const theme = themeContext?.theme
+
   const getChipColor = (status) => {
     switch (status) {
       case 'pending':
@@ -28,11 +32,11 @@ const Transactions = ({ list }) => {
 
   return (
     <Table
-      removeWrapper
+      removeWrapper={theme !== 'light'}
       color='primary'
       isStriped
       aria-label='transaction table'>
-      <TableHeader className='bg-slate-800 font-bold'>
+      <TableHeader className='font-bold'>
         <TableColumn>Name</TableColumn>
         <TableColumn>Status</TableColumn>
         <TableColumn>Date</TableColumn>

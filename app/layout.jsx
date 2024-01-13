@@ -9,16 +9,12 @@ import { store } from '@/app/stores/index'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ThemeContextProvider from '@/app/context/theme-context'
 import { NextUIProvider } from '@nextui-org/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
-  useEffect(() => {
-    window?.localStorage.setItem('theme', 'dark')
-    document?.documentElement.classList.add('dark')
-  }, [])
-
   return (
     <html lang='en'>
       <title>Next.js Admin Dashboard</title>
@@ -29,8 +25,10 @@ export default function RootLayout({ children }) {
       <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       <body className={inter.className}>
         <Provider store={store}>
-          <ToastContainer />
-          <NextUIProvider>{children}</NextUIProvider>
+          <ThemeContextProvider>
+            <ToastContainer />
+            <NextUIProvider>{children}</NextUIProvider>
+          </ThemeContextProvider>
         </Provider>
       </body>
     </html>
