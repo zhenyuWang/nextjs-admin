@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import GitHubLink from '@/app/components/GitHubLink'
 import ThemeSwitch from '@/app/components/ThemeSwitch'
 import FormInput from '@/app/components/Form/FormInput'
 import { loginFormValidationRules } from '@/app/utils/form'
@@ -44,6 +45,7 @@ const LoginPage = () => {
   return (
     <div className='h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#ecddfa] to-[#7ccdf5] dark:from-[#330066] dark:to-[#000]'>
       <div className='fixed top-4 right-4'>
+        <GitHubLink />
         <ThemeSwitch />
       </div>
       <div className='w-[35%] min-w-[300px'>
