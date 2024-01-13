@@ -50,12 +50,14 @@ const AddForm = ({ product, updateProduct }) => {
   return (
     <form
       className='w-full mt-4 flex flex-col items-center'
-      onSubmit={handleSubmit(onSubmit)}>
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className='relative mb-10'>
         <Image
           src={productInfo.img || '/no-product.png'}
           radius='full'
           className='w-[100px] h-[100px]'
+          alt='user avatar'
         />
         <MdCloudUpload
           className='absolute bottom-0 right-0 z-10 text-slate-400'
@@ -146,7 +148,8 @@ const AddForm = ({ product, updateProduct }) => {
                 labelPlacement='outside'
                 placeholder='Select category'
                 defaultSelectedKeys={[productInfo.category]}
-                {...field}>
+                {...field}
+              >
                 <SelectItem key='phone' value='phone'>
                   Phone
                 </SelectItem>
@@ -180,7 +183,8 @@ const AddForm = ({ product, updateProduct }) => {
         disabled={submitting}
         className='w-full mt-6'
         color='primary'
-        type='submit'>
+        type='submit'
+      >
         {submitting ? (
           <Spinner size='sm' className='submit-btn-spinner mr-2' />
         ) : null}

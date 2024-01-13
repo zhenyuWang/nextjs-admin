@@ -16,7 +16,8 @@ const List = ({ list, level }) => {
       itemClasses={{
         title: `${theme === 'light' ? '' : 'text-white'} accordion-item`,
         heading: ' px-3',
-      }}>
+      }}
+    >
       {list.map((item) => (
         <AccordionItem
           className={`pl-2 side-bar-item ${
@@ -34,11 +35,13 @@ const List = ({ list, level }) => {
               <Link
                 className='absolute left-0 top-0 right-0 bottom-0 pl-10 z-10 dark:text-white leading-[58px]'
                 target={item.href ? '_blank' : '_self'}
-                href={item.href || item.path}>
+                href={item.href || item.path}
+              >
                 {item.title}
               </Link>
             )
-          }>
+          }
+        >
           {item.list ? (
             <List list={item.list} level={level + 1} />
           ) : (

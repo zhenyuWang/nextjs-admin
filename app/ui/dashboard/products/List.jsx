@@ -55,7 +55,8 @@ const ProductList = ({ products, total, pageNum, pageSize, deleteProduct }) => {
               href='/dashboard/products/add'
               color='primary'
               size='sm'
-              endContent={<MdAdd />}>
+              endContent={<MdAdd />}
+            >
               Add New
             </Button>
           </div>
@@ -70,7 +71,8 @@ const ProductList = ({ products, total, pageNum, pageSize, deleteProduct }) => {
             initialPage={pageNum}
             onChange={handleChangePage}
           />
-        }>
+        }
+      >
         <TableHeader>
           <TableColumn key='title'>Title</TableColumn>
           <TableColumn key='description'>Description</TableColumn>
@@ -90,6 +92,7 @@ const ProductList = ({ products, total, pageNum, pageSize, deleteProduct }) => {
                     height={40}
                     className='h-[40px] w-[40px]'
                     radius='full'
+                    alt='product img'
                   />
                   <span className='ml-2'>{product.title}</span>
                 </div>
@@ -104,7 +107,8 @@ const ProductList = ({ products, total, pageNum, pageSize, deleteProduct }) => {
                   className='w-[fit-content]'
                   href={`/dashboard/products/${product._id}`}
                   size='sm'
-                  color='primary'>
+                  color='primary'
+                >
                   View
                 </Button>
                 <Button
@@ -114,7 +118,8 @@ const ProductList = ({ products, total, pageNum, pageSize, deleteProduct }) => {
                   onClick={() => {
                     setIsOpenModal(true)
                     setCurrentProductId(product._id)
-                  }}>
+                  }}
+                >
                   Delete
                 </Button>
               </TableCell>
@@ -137,7 +142,8 @@ const ProductList = ({ products, total, pageNum, pageSize, deleteProduct }) => {
                     deleteProduct(currentProductId)
                     setCurrentProductId('')
                     replace(`${pathname}?${params}`)
-                  }}>
+                  }}
+                >
                   Confirm
                 </Button>
               </ModalFooter>

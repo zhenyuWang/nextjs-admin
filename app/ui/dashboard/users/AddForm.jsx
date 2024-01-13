@@ -65,12 +65,14 @@ const AddForm = ({ addUser }) => {
   return (
     <form
       className='w-full flex flex-col items-center'
-      onSubmit={handleSubmit(onSubmit)}>
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className='relative mb-10'>
         <Image
           src={userInfo.img || '/no-avatar.png'}
           radius='full'
           className='w-[100px] h-[100px]'
+          alt='user avatar'
         />
         <MdCloudUpload
           className='absolute bottom-0 right-0 z-10 text-slate-400'
@@ -118,7 +120,8 @@ const AddForm = ({ addUser }) => {
               <button
                 className='focus:outline-none'
                 data-testid='toggle-password-input-type-sign-in'
-                onClick={togglePasswordVisibility}>
+                onClick={togglePasswordVisibility}
+              >
                 {isVisiblePassword ? (
                   <AiFillEye className='text-2xl text-default-400 pointer-events-none' />
                 ) : (
@@ -154,7 +157,8 @@ const AddForm = ({ addUser }) => {
                 size='lg'
                 labelPlacement='outside'
                 placeholder='Select isAdmin'
-                {...field}>
+                {...field}
+              >
                 <SelectItem key='yes' value='yes'>
                   Yes
                 </SelectItem>
@@ -179,7 +183,8 @@ const AddForm = ({ addUser }) => {
                 label='isActive'
                 labelPlacement='outside'
                 placeholder='Select isActive'
-                {...field}>
+                {...field}
+              >
                 <SelectItem key='yes' value='yes'>
                   Yes
                 </SelectItem>
@@ -209,7 +214,8 @@ const AddForm = ({ addUser }) => {
         disabled={submitting}
         className='w-full mt-6'
         color='primary'
-        type='submit'>
+        type='submit'
+      >
         {submitting ? (
           <Spinner size='sm' className='submit-btn-spinner mr-2' />
         ) : null}

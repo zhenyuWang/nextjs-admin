@@ -35,7 +35,8 @@ const Transactions = ({ list }) => {
       removeWrapper={theme !== 'light'}
       color='primary'
       isStriped
-      aria-label='transaction table'>
+      aria-label='transaction table'
+    >
       <TableHeader className='font-bold'>
         <TableColumn>Name</TableColumn>
         <TableColumn>Status</TableColumn>
@@ -50,7 +51,8 @@ const Transactions = ({ list }) => {
           ) : (
             'No rows to display.'
           )
-        }>
+        }
+      >
         {(item) => (
           <TableRow key={item._id}>
             <TableCell className='flex items-center'>
@@ -60,6 +62,7 @@ const Transactions = ({ list }) => {
                 className='h-[40px] w-[40px]'
                 src={item.img}
                 radius='full'
+                alt='user avatar'
               />
               <span className='ml-2 z-10'>{item.username}</span>
             </TableCell>

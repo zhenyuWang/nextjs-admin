@@ -1,0 +1,12 @@
+{
+  "extends": "next/core-web-vitals",
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "jsx-quotes": ["error", "prefer-single"],
+    "prettier/prettier": "warn"
+  }
+}

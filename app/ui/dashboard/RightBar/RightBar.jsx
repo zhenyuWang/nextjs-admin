@@ -19,7 +19,8 @@ const RightBar = () => {
             href='https://3d-personal-profile.vercel.app/'
             size='sm'
             endContent={<MdArrowForward />}
-            color='primary'>
+            color='primary'
+          >
             More
           </Button>
         </div>
@@ -41,7 +42,8 @@ const RightBar = () => {
             href='https://3d-personal-profile.vercel.app/#contact'
             size='sm'
             endContent={<MdArrowForward />}
-            color='primary'>
+            color='primary'
+          >
             Contact Me
           </Button>
         </div>

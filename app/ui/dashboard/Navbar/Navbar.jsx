@@ -25,15 +25,14 @@ const Navbar = ({ user }) => {
     dispatch({ type: 'sideBar/toggleIsShow' })
   }
 
-  const watchWindowSize = () => {
-    if (window.innerWidth < 1180) {
-      dispatch({ type: 'sideBar/hide' })
-    } else {
-      dispatch({ type: 'sideBar/show' })
-    }
-  }
-
   useEffect(() => {
+    const watchWindowSize = () => {
+      if (window.innerWidth < 1180) {
+        dispatch({ type: 'sideBar/hide' })
+      } else {
+        dispatch({ type: 'sideBar/show' })
+      }
+    }
     if (typeof window !== 'undefined') {
       watchWindowSize()
       window.addEventListener('resize', watchWindowSize)
@@ -42,7 +41,7 @@ const Navbar = ({ user }) => {
         window.removeEventListener('resize', watchWindowSize)
       }
     }
-  }, [])
+  }, [dispatch])
 
   const themeContext = useTheme()
   const theme = themeContext?.theme
@@ -63,7 +62,8 @@ const Navbar = ({ user }) => {
 
   return (
     <div
-      className={`absolute top-0 left-0 right-0 z-50 p-4 transition-width flex items-center justify-between round-lg shadow-navbar dark:shadow-navbarDark bg-slate-100 dark:bg-[var(--bgSoft)]`}>
+      className={`absolute top-0 left-0 right-0 z-50 p-4 transition-width flex items-center justify-between round-lg shadow-navbar dark:shadow-navbarDark bg-slate-100 dark:bg-[var(--bgSoft)]`}
+    >
       <div className='flex items-center'>
         <div onClick={toggleIsShowSideBar} className='mr-2'>
           {isSidebarShown ? (
@@ -78,11 +78,13 @@ const Navbar = ({ user }) => {
           itemClasses={{
             item: [theme === 'light' ? '' : 'text-slate-200'],
             separator: 'text-slate-500',
-          }}>
+          }}
+        >
           {pathnameArr.map((item, index) => (
             <BreadcrumbItem
               key={index}
-              href={`/${pathnameArr.slice(0, index + 1).join('/')}`}>
+              href={`/${pathnameArr.slice(0, index + 1).join('/')}`}
+            >
               {item}
             </BreadcrumbItem>
           ))}
@@ -92,7 +94,8 @@ const Navbar = ({ user }) => {
         <Search placeholder='Search...' />
         <Tooltip
           placement='bottom'
-          content={isFullScreen ? 'Exit Full Screen' : 'Full Screen'}>
+          content={isFullScreen ? 'Exit Full Screen' : 'Full Screen'}
+        >
           <div className='' onClick={handleFullScreen}>
             {isFullScreen ? (
               <MdOutlineFullscreenExit size={20} />

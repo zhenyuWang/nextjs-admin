@@ -11,7 +11,8 @@ export default function ThemeSwitch() {
   return (
     <button
       className='text-black shadow-2xl rounded-full hover:scale-[1.15] active:scale-105 transition-all dark:text-white'
-      onClick={toggleTheme}>
+      onClick={toggleTheme}
+    >
       {theme === 'light' ? (
         <MdLightMode size={20} color='#000' />
       ) : (

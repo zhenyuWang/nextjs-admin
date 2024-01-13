@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 const productSchema = new mongoose.Schema(
@@ -80,7 +80,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 const transactionSchema = new mongoose.Schema(
@@ -103,7 +103,7 @@ const transactionSchema = new mongoose.Schema(
       min: 0,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 )
 
 export const User = mongoose.models.User || mongoose.model('User', userSchema)

@@ -31,7 +31,8 @@ const NavbarUser = ({ user }) => {
           <DropdownItem
             key='github'
             target='_blank'
-            href='https://github.com/zhenyuWang'>
+            href='https://github.com/zhenyuWang'
+          >
             GitHub
           </DropdownItem>
         </DropdownSection>
@@ -39,7 +40,8 @@ const NavbarUser = ({ user }) => {
           startContent={<MdLogout />}
           onClick={() => {
             triggerSignOut()
-          }}>
+          }}
+        >
           Logout
         </DropdownItem>
       </DropdownMenu>

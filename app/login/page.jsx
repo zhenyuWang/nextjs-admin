@@ -68,7 +68,8 @@ const LoginPage = () => {
               <div
                 className='focus:outline-none cursor-pointer'
                 data-testid='toggle-password-input-type-sign-in'
-                onClick={togglePasswordVisibility}>
+                onClick={togglePasswordVisibility}
+              >
                 {isVisiblePassword ? (
                   <AiFillEye className='text-2xl text-default-400 pointer-events-none' />
                 ) : (
@@ -84,7 +85,8 @@ const LoginPage = () => {
             <button
               className='w-full h-10 mt-6 flex items-center justify-center animation-btn rounded-3xl'
               disabled={submitting}
-              type='submit'>
+              type='submit'
+            >
               {submitting ? (
                 <Spinner size='sm' className='submit-btn-spinner mr-2' />
               ) : null}

@@ -55,7 +55,8 @@ const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
               href='/dashboard/users/add'
               color='primary'
               size='sm'
-              endContent={<MdAdd />}>
+              endContent={<MdAdd />}
+            >
               Add New
             </Button>
           </div>
@@ -70,7 +71,8 @@ const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
             initialPage={pageNum}
             onChange={handleChangePage}
           />
-        }>
+        }
+      >
         <TableHeader>
           <TableColumn key='name'>Name</TableColumn>
           <TableColumn key='email'>Email</TableColumn>
@@ -90,6 +92,7 @@ const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
                     height={40}
                     className='h-[40px] w-[40px]'
                     radius='full'
+                    alt='avatar'
                   />
                   <span className='ml-2'>{user.username}</span>
                 </div>
@@ -104,7 +107,8 @@ const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
                   className='w-[fit-content]'
                   href={`/dashboard/users/${user._id}`}
                   size='sm'
-                  color='primary'>
+                  color='primary'
+                >
                   View
                 </Button>
                 <Button
@@ -114,7 +118,8 @@ const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
                   onClick={() => {
                     setIsOpenModal(true)
                     setCurrentUserId(user._id)
-                  }}>
+                  }}
+                >
                   Delete
                 </Button>
               </TableCell>
@@ -137,7 +142,8 @@ const UserList = ({ users, total, pageNum, pageSize, deleteUser }) => {
                     deleteUser(currentUserId)
                     setCurrentUserId('')
                     replace(`${pathname}?${params}`)
-                  }}>
+                  }}
+                >
                   Confirm
                 </Button>
               </ModalFooter>
