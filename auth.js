@@ -13,7 +13,6 @@ const login = async (credentials) => {
     connectToDB()
     const user = await User.findOne({ username: credentials.username })
     if (!user) throw new Error('The user does not exist!')
-    if (!user.isAdmin) throw new Error('You are not an admin!')
 
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,

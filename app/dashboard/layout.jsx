@@ -7,7 +7,7 @@ const Layout = async ({ children }) => {
 
   return (
     <div className='h-screen flex'>
-      <SideBar />
+      <SideBar user={user} />
       <div className='flex-1 h-full relative w-[calc(100vh-260px]'>
         <Navbar user={user} />
         <div className='h-full pt-[90px] pl-4 pb-4 pr-4 overflow-auto'>

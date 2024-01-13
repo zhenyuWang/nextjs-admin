@@ -1,8 +1,15 @@
+import { auth } from '@/auth'
+import { redirect } from 'next/navigation'
 import { fetchUsers } from '@/app/lib/data'
 import { deleteUser } from '@/app/lib/actions'
 import UserList from '@/app/ui/dashboard/users/List'
 
 const UsersPage = async ({ searchParams }) => {
+  const user = await auth()
+  if (!user.isAdmin) {
+    redirect('/dashboard')
+  }
+
   const q = searchParams?.q || ''
   const pageNum = searchParams?.page * 1 || 1
   const pageSize = 10

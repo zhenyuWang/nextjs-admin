@@ -107,6 +107,10 @@ const LoginPage = () => {
               />
             </div>
           </div>
+          <div className='mt-2 pl-1 text-slate-400'>
+            <p>admin role: admin 11111111</p>
+            <p>client &nbsp;role: user-1 11111111</p>
+          </div>
         </form>
       </div>
     </div>

@@ -4,7 +4,6 @@ A background management system template based on Next.js@14 NextUI and NextAuth.
 
 TODO:
 
-- [ ] support multiple roles and permissions
 - [ ] commit message lint
 - [ ] prettier & eslint
 - [ ] typescript
