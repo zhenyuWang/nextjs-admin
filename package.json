@@ -24,7 +24,6 @@
     "node": ">=18.12.0"
   },
   "dependencies": {
-    "@next/eslint-plugin-next": "14.0.1",
     "@nextui-org/react": "^2.2.9",
     "bcrypt": "^5.1.1",
     "framer-motion": "^10.16.5",
@@ -45,6 +44,7 @@
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^5.0.1",
+    "@next/eslint-plugin-next": "14.0.1",
     "eslint": "8",
     "eslint-config-next": "14.0.3",
     "lint-staged": "^15.1.0",

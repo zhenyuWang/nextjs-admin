@@ -28,7 +28,6 @@ const LoginPage = () => {
 
   const handleLogin = async (data) => {
     setSubmitting(true)
-    authenticate(data)
     const errMsg = await authenticate(data)
     if (errMsg) {
       toast.error(errMsg, {
